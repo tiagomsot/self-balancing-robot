@@ -13,6 +13,7 @@ A 512-candidate Bayesian search tuned the three pitch PID gains. The selected
 controller passed eight MuJoCo training conditions, six additional starting
 conditions, and **12/12 Gazebo recovery checks**: three independent launches at
 each of +5, -5, +10 and -10 degrees, with 12 simulated seconds per run.
+Two additional 60-second Gazebo runs from +10 and -10 degrees also passed.
 Its fixed MuJoCo training objective decreased by **25.99%** relative to the previous
 gains. This is the best feasible candidate in this search, not a global optimum.
 
@@ -158,7 +159,10 @@ python3 -m unittest discover -s tests -v
 ```
 
 Python checks require `requirements.txt`; the shared C++ library must be built
-first. GitHub Actions builds the C++ core and runs the CPU regression suite.
+first. All 94 checks passed with ROS sourced; six ROS adapter checks are skipped
+when ROS is unavailable. The [verification record](experiments/imu-only-optimization-20261022/checks.json)
+also includes the Nano build and CPU/GPU parity results.
+GitHub Actions builds the C++ core and runs the CPU regression suite.
 The initial [Python PD experiment](docs/first-experiment.md) and its
 [post-processing guide](docs/postprocessing.md) remain as learning material.
 

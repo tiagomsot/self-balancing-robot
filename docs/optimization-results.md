@@ -66,6 +66,13 @@ within 1 degree and 5 degrees/s, and respect the command cap. Existing
 predicted electrical thresholds are also checked. The acceptance thresholds
 were retained throughout the search and validation.
 
+Two further runs from +10 and -10 degrees passed for **60 simulated seconds**
+each, using the applied profile. Their summaries are in the
+[verification record](../experiments/imu-only-optimization-20261022/checks.json),
+alongside 94 passing regression checks, CPU MuJoCo +/-10-degree recoveries,
+CPU/GPU parity checks and the Nano compilation. The one-minute cases drifted
+approximately +/-20.64 m while staying upright, with final speed near 0.35 m/s.
+
 These repetitions exercise launch and message timing. They do not vary
 unmeasured mass, friction, sensor bias/noise or battery characteristics.
 The body can settle upright while the robot continues rolling. Displacement
