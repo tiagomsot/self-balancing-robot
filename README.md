@@ -99,15 +99,14 @@ wheel feedback and do not validate this encoder-free robot.
 
 ## One controller, several adapters
 
-```mermaid
-flowchart LR
-    S[Raw accelerometer and gyro] --> E[Shared C++ complementary filter]
-    E --> P[Shared C++ pitch PID]
-    P --> U[Torque request to PWM]
-    U --> A[Platform adapter]
-    A --> G[ROS 2 / Gazebo motor model]
-    A --> M[CPU or GPU MuJoCo motor model]
-    A --> N[Nano motor output pins]
+```text
+Accelerometer + gyro
+        |
+Shared C++: complementary filter -> pitch PID -> torque/PWM mapping
+        |
+        +-- ROS 2 / Gazebo motor model
+        +-- CPU or GPU MuJoCo motor model
+        +-- Arduino Nano output pins
 ```
 
 The virtual IMU sits 6 cm above the wheel axle and includes motion at that site.
