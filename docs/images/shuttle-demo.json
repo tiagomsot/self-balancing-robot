@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "checks": {
+    "recorded_response_passed": true,
+    "returned_to_start": true,
+    "straight_path": true,
+    "independently_stopped": true,
+    "turns_near_endpoint": true,
+    "truth_covers_routine": true
+  },
+  "distance_target_m": 0.5,
+  "cruise_speed_target_m_s": 0.1,
+  "cycles_completed": 2,
+  "ground_truth_leg_distances_m": [
+    0.49793824380507085,
+    0.4960917562348067,
+    0.49605222197796905,
+    0.4961600963285296
+  ],
+  "ground_truth_turn_errors_deg": [
+    0.16455430549190286,
+    0.0732328158103439,
+    0.052879406360522345
+  ],
+  "return_error_m": 0.002086322174459176,
+  "maximum_cross_track_m": 0.0014082890095001147,
+  "stopped_average_speeds_m_s": [
+    0.0008210591359066092,
+    0.000870666373715472,
+    0.0008525197517028569,
+    0.0008526191957236629
+  ],
+  "turn_center_drift_m": [
+    0.0008275532352182011,
+    0.0006825923302067098,
+    0.0007536478119969517
+  ],
+  "maximum_abs_pitch_deg": 4.999472744279396,
+  "peak_observed_forward_speed_m_s": 0.18408180679192637,
+  "maximum_average_motor_current_a": 0.38294117647058823,
+  "pulse_rating_uncertain": true,
+  "hardware_rating_compliance_established": false,
+  "source_sha256": {
+    "ros2_ws/src/balancing_robot_sim/scripts/balance_controller.py": "d0a6a3bde8f9eaad7891b01385fb354634d021a75f0ec38ebce63c36481fa3e6",
+    "ros2_ws/src/balancing_robot_sim/scripts/shuttle_demo.py": "961b167c916bf22a07961d6ce88ddc869c9e269c48d41993d3ec740e79ea710e",
+    "ros2_ws/src/balancing_robot_sim/scripts/motion_core.py": "605e3c142e75b3511db604faaf6aaebe1f76a961f02902e78837c70785ff65a4",
+    "ros2_ws/src/balancing_robot_sim/scripts/motor_driver.py": "b587e4628c1840efe9e47f7e815d1ef0262923d266db3745a88e79401c5d1b61",
+    "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64",
+    "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "5edf990c5da0d4aebbe76307be6c93e8a1e17180f2a9c14a6aec1620777e4ba7",
+    "ros2_ws/src/balancing_robot_sim/launch/passive.launch.py": "6f9219ed501677fe0cc25172bb52c99f94f4143862a5a6e974f07e37cb039e71",
+    "ros2_ws/src/balancing_robot_sim/launch/balance.launch.py": "ef4aee0b43a5852375b69491979d54e0fe38d1805fe73a05671a5e306b4abeb6",
+    "ros2_ws/src/balancing_robot_sim/urdf/robot.urdf.xacro": "2185056206c27629c3135f1a9def7c0b7fb43fa8ce05e91c53a8ace6915fe5a7",
+    "ros2_ws/src/balancing_robot_sim/worlds/balance.sdf": "ac96b1510292598917b608acfed8aaeb76569c060bad8fc61c386a022c25c473",
+    "analysis/check_shuttle.py": "8fe4b6b9ab1cad28cbcd259e492585e820d841c523d2043a62de4c56b7e4a90b",
+    "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/balance_controller": "d0a6a3bde8f9eaad7891b01385fb354634d021a75f0ec38ebce63c36481fa3e6",
+    "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/shuttle_demo": "961b167c916bf22a07961d6ce88ddc869c9e269c48d41993d3ec740e79ea710e",
+    "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/motion_core.py": "605e3c142e75b3511db604faaf6aaebe1f76a961f02902e78837c70785ff65a4",
+    "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/motor_driver": "b587e4628c1840efe9e47f7e815d1ef0262923d266db3745a88e79401c5d1b61",
+    "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+  },
+  "plotter_sha256": "71bcf6c191f10f5d4252e5a98cff7f8c7f12edff17a978422cb09f9fa5d91273",
+  "recording_directory": "shuttle-waypoint-check",
+  "note": "Nominal simulation checks; wheel sensing/orientation are ideal. Distance and speed are targets, not exact measured motion."
+}

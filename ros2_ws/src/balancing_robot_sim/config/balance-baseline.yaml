@@ -1,0 +1,44 @@
+balance_controller:
+  ros__parameters:
+    use_sim_time: true
+    # Inner pitch PD: total requested torque across both wheels.
+    kp: 0.2192027027              # N m / rad
+    kd: 0.0124864865              # N m s / rad
+    total_torque_limit_nm: 0.060  # Illustrative simulator limit, not a motor rating.
+    # Slow outer loop: choose a small lean to return near the starting point.
+    # Set both gains to zero for the original pitch-only PD (which drifts).
+    position_gain: 0.10          # rad / m
+    velocity_gain: 0.18          # rad / (m/s), adjusted for nominal shaft drag
+    target_tilt_limit_deg: 5.0
+    wheel_radius_m: 0.04
+    fall_cutoff_deg: 35.0
+    sensor_timeout_s: 0.25
+    auto_start: true
+
+motor_driver:
+  ros__parameters:
+    use_sim_time: true
+    mode: motor_driver                 # ideal preserves the old torque actuator
+    update_period_s: 0.005
+    command_timeout_s: 0.25
+    nominal_voltage_v: 6.0
+    stall_current_a: 1.5                # Adafruit reference sample, not this motor
+    stall_torque_nm: 0.0784532          # 0.8 kgf cm, gearbox output
+    no_load_speed_rpm: 200.0
+    no_load_current_a: 0.15
+    battery_voltage_v: 6.0
+    battery_resistance_ohm: 0.0         # unknown; ideal battery until measured
+    driver_drop_at_rating_v: 2.6        # TI typical combined drop at 0.6 A
+    driver_drop_intercept_v: 1.8        # assumed curve shape; only 0.6 A anchor sourced
+    driver_current_rating_a: 0.6        # diagnostic, NOT automatic current regulation
+    driver_peak_current_a: 1.2          # nonrepetitive <=100 us; not a PWM allowance
+    driver_min_supply_v: 5.0            # assumed regulated 5 V logic supply
+    driver_thermal_resistance_k_w: 36.4  # JEDEC reference, not measured protoboard
+    ambient_temperature_c: 25.0
+    driver_max_junction_c: 150.0
+    pwm_levels: 255                     # signed direction plus 8-bit magnitude
+    pwm_frequency_hz: 490.0             # assumed Nano enable PWM, pin unknown
+    pwm_off_mode: coast                # assumed enable-PWM; wiring unverified
+    command_deadband: 0.0               # unknown; optional sensitivity parameter
+    current_time_constant_s: 0.0        # unknown; quasi-static nominal model
+    command_full_pwm_torque_nm: 0.04118793 # fixed nominal torque-to-duty calibration

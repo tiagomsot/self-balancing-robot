@@ -1,0 +1,66 @@
+balance_controller:
+  ros__parameters:
+    use_sim_time: true
+    # Actual hardware: MPU-6050 IMU and NO wheel encoders.
+    wheel_feedback_enabled: false
+    # IMU-only PID; validation and limits: docs/imu-only-control.md.
+    # Total requested torque across both wheels; no wheel feedback.
+    kp: 1.0191304055423189      # N m / rad
+    kd: 0.02                    # N m s / rad
+    ki: 1.978432718999299       # N m / (rad s); integral output is limited.
+    total_torque_limit_nm: 0.040  # Software request cap, NOT physical current regulation.
+    # Wheel truth is evaluation-only. These loops are unavailable on this robot.
+    position_gain: 0.0
+    velocity_gain: 0.0
+    target_tilt_limit_deg: 5.0
+    wheel_radius_m: 0.04
+    fall_cutoff_deg: 35.0
+    sensor_timeout_s: 0.25
+    auto_start: true
+    # Motion is opt-in through run_shuttle.sh / shuttle:=true.
+    motion_enabled: false
+    motion_command_timeout_s: 0.3
+    max_speed_m_s: 0.25
+    max_yaw_rate_rad_s: 0.8726646259971648  # 50 degrees/s
+    motion_acceleration_m_s2: 0.15
+    yaw_acceleration_rad_s2: 0.35
+    yaw_rate_gain: 0.01
+    yaw_rate_integral_gain: 0.02
+    yaw_torque_limit_nm: 0.012
+
+shuttle_demo:
+  ros__parameters:
+    use_sim_time: true
+    settle_time_s: 2.0
+    turn_settle_time_s: 1.0
+    turn_rate_rad_s: 0.8726646259971648  # 50 degrees/s
+    acceleration_m_s2: 0.15
+    phase_timeout_s: 40.0
+
+motor_driver:
+  ros__parameters:
+    use_sim_time: true
+    mode: motor_driver                 # ideal preserves the old torque actuator
+    update_period_s: 0.005
+    command_timeout_s: 0.25
+    nominal_voltage_v: 6.0
+    stall_current_a: 1.5                # Adafruit reference sample, not this motor
+    stall_torque_nm: 0.0784532          # 0.8 kgf cm, gearbox output
+    no_load_speed_rpm: 200.0
+    no_load_current_a: 0.15
+    battery_voltage_v: 6.0
+    battery_resistance_ohm: 0.0         # unknown; ideal battery until measured
+    driver_drop_at_rating_v: 2.6        # TI typical combined drop at 0.6 A
+    driver_drop_intercept_v: 1.8        # assumed curve shape; only 0.6 A anchor sourced
+    driver_current_rating_a: 0.6        # diagnostic, NOT automatic current regulation
+    driver_peak_current_a: 1.2          # nonrepetitive <=100 us; not a PWM allowance
+    driver_min_supply_v: 5.0            # assumed regulated 5 V logic supply
+    driver_thermal_resistance_k_w: 36.4  # JEDEC reference, not measured protoboard
+    ambient_temperature_c: 25.0
+    driver_max_junction_c: 150.0
+    pwm_levels: 255                     # signed direction plus 8-bit magnitude
+    pwm_frequency_hz: 490.0             # assumed Nano enable PWM, pin unknown
+    pwm_off_mode: coast                # assumed enable-PWM; wiring unverified
+    command_deadband: 0.0               # unknown; optional sensitivity parameter
+    current_time_constant_s: 0.0        # unknown; quasi-static nominal model
+    command_full_pwm_torque_nm: 0.04118793 # fixed nominal torque-to-duty calibration

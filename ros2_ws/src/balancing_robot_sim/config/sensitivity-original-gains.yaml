@@ -1,0 +1,8 @@
+# Preserve the original ideal-demo speed gain for a controlled comparison.
+balance_controller:
+  ros__parameters:
+    kp: 0.2192027027
+    kd: 0.0124864865
+    total_torque_limit_nm: 0.060
+    position_gain: 0.10
+    velocity_gain: 0.10

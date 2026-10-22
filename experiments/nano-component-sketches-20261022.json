@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-22",
+  "target": "classic Nano / ATmega328P / 16 MHz",
+  "toolchain": {"arduino_avr_core": "1.8.6", "avr_gpp": "7.3.0"},
+  "builds": [
+    {"sketch": "01_NanoHeartbeat", "program_bytes": 4082, "static_ram_bytes": 419},
+    {"sketch": "02_I2CScanner", "program_bytes": 5282, "static_ram_bytes": 425},
+    {"sketch": "03_MPU6050Raw", "program_bytes": 8394, "static_ram_bytes": 439},
+    {"sketch": "04_IMUPitch", "program_bytes": 9532, "static_ram_bytes": 458},
+    {"sketch": "05_MotorDriver", "program_bytes": 4636, "static_ram_bytes": 421, "motor_mapping_enabled": false},
+    {"sketch": "06_BatteryVoltage", "program_bytes": 6072, "static_ram_bytes": 433, "divider_enabled": false},
+    {"sketch": "RobotFirmware", "program_bytes": 15338, "static_ram_bytes": 627, "motor_mapping_enabled": false}
+  ],
+  "isolated_compile_fixtures": [
+    {"sketch": "RobotFirmware", "hypothetical_valid_motor_pins": true, "program_bytes": 16062, "static_ram_bytes": 637},
+    {"sketch": "06_BatteryVoltage", "hypothetical_divider_enabled": true, "program_bytes": 6050, "static_ram_bytes": 433}
+  ],
+  "other_checks": {"portable_core_ctest": "passed", "bash_syntax": "passed", "local_guide_links": "passed"},
+  "limitations": [
+    "Compilation only: no upload or physical hardware execution.",
+    "Fixture pins and resistor values were temporary test inputs, not the owner's wiring.",
+    "The real board mapping and battery divider remain disabled.",
+    "Static RAM figures exclude stack use; program percentages reported by avr-size do not subtract a bootloader reservation."
+  ]
+}

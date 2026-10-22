@@ -1,0 +1,157 @@
+{
+  "source_runs": [
+    "outputs/gpu-first-check",
+    "outputs/gpu-256-check",
+    "outputs/gpu-1024-check"
+  ],
+  "reports": [
+    {
+      "device": "cuda:0",
+      "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "physics_on_gpu": true,
+      "worlds": 16,
+      "duration_s": 5.0,
+      "seed": 20261021,
+      "warmup_and_compile_s": 52.384361987999,
+      "batch_wall_s": 1.4034140999974625,
+      "physics_steps_per_s": 57003.84512322104,
+      "aggregate_realtime_factor": 57.00384512322104,
+      "cpu_short_check_wall_s": 0.009297300999605795,
+      "cpu_gpu_parity_passed": true,
+      "cpu_reference_worlds": 4,
+      "cpu_reference_wall_s": 0.3504872420016909,
+      "cpu_reference_aggregate_realtime_factor": 57.06341801709151,
+      "measured_throughput_ratio": 0.9989560230364641,
+      "cpu_reference_final_qpos_max_error": 0.00041314267681707983,
+      "cpu_reference_final_qvel_max_error": 0.008332394783056973,
+      "cpu_gpu_max_qpos_error": 9.550573387695493e-08,
+      "cpu_gpu_max_qvel_error": 1.8122021261390842e-06,
+      "motor_controller_parity_passed": true,
+      "motor_controller_max_torque_error_nm": 4.857608100483635e-09,
+      "no_buffer_overflow": true,
+      "all_states_finite": true,
+      "response_pass_count": 16,
+      "existing_preset_response_pass": [
+        true,
+        true
+      ],
+      "best_world": 8,
+      "source_sha256": {
+        "gpu/parallel_sim.py": "6490e726dcd2423f08a8222378edf6286a9586c71ce611f31e85139357d7f046",
+        "gpu/robot.xml": "f672c4ab90b00e6f57391ea19834a7d178575812c9d820780e350b8602d58121",
+        "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "6c7b9993327c719b8f2e64c318215d5f25bcc048b6356f02fce13b52ac9707ac",
+        "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+      },
+      "versions": {
+        "mujoco": "3.16.0",
+        "mujoco-warp": "3.16.0",
+        "warp-lang": "1.18.0",
+        "numpy": "2.5.4"
+      },
+      "scope": "Nominal fixed-bus balancing only; randomized gains are individual cases, not robustly optimized presets.",
+      "gazebocomparison_established": false,
+      "hardware_validated": false,
+      "pulse_current_compliance_established": false,
+      "passed": true
+    },
+    {
+      "device": "cuda:0",
+      "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "physics_on_gpu": true,
+      "worlds": 256,
+      "duration_s": 5.0,
+      "seed": 20261021,
+      "warmup_and_compile_s": 0.965193536998413,
+      "batch_wall_s": 1.1676481530012097,
+      "physics_steps_per_s": 1096220.6352230438,
+      "aggregate_realtime_factor": 1096.220635223044,
+      "cpu_short_check_wall_s": 0.009685660999821266,
+      "cpu_gpu_parity_passed": true,
+      "cpu_reference_worlds": 4,
+      "cpu_reference_wall_s": 0.3613608919986291,
+      "cpu_reference_aggregate_realtime_factor": 55.34633227570148,
+      "measured_throughput_ratio": 19.806563328575145,
+      "cpu_reference_final_qpos_max_error": 0.00022038125561346655,
+      "cpu_reference_final_qvel_max_error": 0.0007390042710855305,
+      "cpu_gpu_max_qpos_error": 8.791176731026695e-08,
+      "cpu_gpu_max_qvel_error": 1.618063992570029e-06,
+      "motor_controller_parity_passed": true,
+      "motor_controller_max_torque_error_nm": 5.815664720631997e-09,
+      "no_buffer_overflow": true,
+      "all_states_finite": true,
+      "response_pass_count": 255,
+      "existing_preset_response_pass": [
+        true,
+        true
+      ],
+      "best_world": 129,
+      "source_sha256": {
+        "gpu/parallel_sim.py": "6490e726dcd2423f08a8222378edf6286a9586c71ce611f31e85139357d7f046",
+        "gpu/robot.xml": "f672c4ab90b00e6f57391ea19834a7d178575812c9d820780e350b8602d58121",
+        "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "6c7b9993327c719b8f2e64c318215d5f25bcc048b6356f02fce13b52ac9707ac",
+        "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+      },
+      "versions": {
+        "mujoco": "3.16.0",
+        "mujoco-warp": "3.16.0",
+        "warp-lang": "1.18.0",
+        "numpy": "2.5.4"
+      },
+      "scope": "Nominal fixed-bus balancing only; randomized gains are individual cases, not robustly optimized presets.",
+      "gazebocomparison_established": false,
+      "hardware_validated": false,
+      "pulse_current_compliance_established": false,
+      "passed": true
+    },
+    {
+      "device": "cuda:0",
+      "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "physics_on_gpu": true,
+      "worlds": 1024,
+      "duration_s": 5.0,
+      "seed": 20261021,
+      "warmup_and_compile_s": 1.071973171998252,
+      "batch_wall_s": 1.3387555279987282,
+      "physics_steps_per_s": 3824447.3265807973,
+      "aggregate_realtime_factor": 3824.4473265807974,
+      "cpu_short_check_wall_s": 0.0109721000007994,
+      "cpu_gpu_parity_passed": true,
+      "cpu_reference_worlds": 4,
+      "cpu_reference_wall_s": 0.3543636599970341,
+      "cpu_reference_aggregate_realtime_factor": 56.43919582546188,
+      "measured_throughput_ratio": 67.76225760565218,
+      "cpu_reference_final_qpos_max_error": 0.0005877687814686006,
+      "cpu_reference_final_qvel_max_error": 0.006848060314215337,
+      "cpu_gpu_max_qpos_error": 8.791176731026695e-08,
+      "cpu_gpu_max_qvel_error": 1.8122021261390842e-06,
+      "motor_controller_parity_passed": true,
+      "motor_controller_max_torque_error_nm": 5.832583305220851e-09,
+      "no_buffer_overflow": true,
+      "all_states_finite": true,
+      "response_pass_count": 1023,
+      "existing_preset_response_pass": [
+        true,
+        true
+      ],
+      "best_world": 556,
+      "source_sha256": {
+        "gpu/parallel_sim.py": "6490e726dcd2423f08a8222378edf6286a9586c71ce611f31e85139357d7f046",
+        "gpu/robot.xml": "f672c4ab90b00e6f57391ea19834a7d178575812c9d820780e350b8602d58121",
+        "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "6c7b9993327c719b8f2e64c318215d5f25bcc048b6356f02fce13b52ac9707ac",
+        "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+      },
+      "versions": {
+        "mujoco": "3.16.0",
+        "mujoco-warp": "3.16.0",
+        "warp-lang": "1.18.0",
+        "numpy": "2.5.4"
+      },
+      "scope": "Nominal fixed-bus balancing only; randomized gains are individual cases, not robustly optimized presets.",
+      "gazebocomparison_established": false,
+      "hardware_validated": false,
+      "pulse_current_compliance_established": false,
+      "passed": true
+    }
+  ],
+  "scope": "MuJoCo Warp balancing-only batch. Not Gazebo throughput or a multithreaded CPU benchmark."
+}

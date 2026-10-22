@@ -1,0 +1,1753 @@
+{
+  "date": "2026-10-22",
+  "experiment": "Extended matched BO/DE comparison",
+  "protocol": {
+    "protocol": "Paired equal-evaluation-budget BO vs SciPy DE; shared initial observations",
+    "seeds": [
+      7,
+      42,
+      123,
+      20261021,
+      20261022
+    ],
+    "trials_per_method_per_seed": 256,
+    "population": 16,
+    "batch_size": 8,
+    "training_seconds": 8,
+    "holdout_seconds": 12,
+    "starting_gains": {
+      "kp": 1,
+      "kd": 0.1,
+      "position_gain": 0.15,
+      "velocity_gain": 0.35
+    },
+    "bounds": {
+      "kp": [
+        0.3,
+        1.5
+      ],
+      "kd": [
+        0.02,
+        0.14
+      ],
+      "position_gain": [
+        0.05,
+        0.5
+      ],
+      "velocity_gain": [
+        0.15,
+        0.6
+      ]
+    },
+    "fixed_torque_cap_nm": 0.04,
+    "training_cases": [
+      {
+        "name": "lean_+5",
+        "tilt_deg": 5,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "lean_-5",
+        "tilt_deg": -5,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "lean_+10",
+        "tilt_deg": 10,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "lean_-10",
+        "tilt_deg": -10,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "moving_+0.08",
+        "tilt_deg": 0,
+        "speed_m_s": 0.08,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "moving_-0.08",
+        "tilt_deg": 0,
+        "speed_m_s": -0.08,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "rotating_+10",
+        "tilt_deg": 0,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 10
+      },
+      {
+        "name": "rotating_-10",
+        "tilt_deg": 0,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": -10
+      }
+    ],
+    "holdout_cases": [
+      {
+        "name": "lean_+7",
+        "tilt_deg": 7,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "lean_-7",
+        "tilt_deg": -7,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "moving_+0.12",
+        "tilt_deg": 0,
+        "speed_m_s": 0.12,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "moving_-0.12",
+        "tilt_deg": 0,
+        "speed_m_s": -0.12,
+        "pitch_rate_deg_s": 0
+      },
+      {
+        "name": "rotating_+15",
+        "tilt_deg": 0,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": 15
+      },
+      {
+        "name": "rotating_-15",
+        "tilt_deg": 0,
+        "speed_m_s": 0,
+        "pitch_rate_deg_s": -15
+      }
+    ],
+    "controller": "shared C++ on CPU",
+    "physics_device": "cuda:0",
+    "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "timing": "Same measured initial evaluation time charged to both methods; warm-up and holdout excluded from search time. Includes CPU proposals, transfers, resets, scoring and physics.",
+    "selection": "Lowest feasible TRAINING score per run and per method. Holdout/Gazebo only accept or reject finalists; their scores do not select gains.",
+    "order": "Alternating BO-first and DE-first across seeds; one GPU worker, sequential methods.",
+    "scope": "5-seed nominal simulation experiment; not proof of global or hardware superiority."
+  },
+  "counts": {
+    "credited_parameter_evaluations": 2560,
+    "actual_search_parameter_evaluations": 2480,
+    "actual_training_simulations": 19840,
+    "nominal_repeats_per_starting_condition": 1,
+    "excludes": "Warm-up, active-reference, padded worlds, heldout and Gazebo checks"
+  },
+  "budget_effect": {
+    "bayesian": {
+      "median_best_score_at_64": 0.06699263211339712,
+      "median_best_score_at_256": 0.06657888519112021,
+      "median_score_reduction_percent": 0.6176006364051689,
+      "runs_improving_after_64": 4
+    },
+    "differential_evolution": {
+      "median_best_score_at_64": 0.06716122722718865,
+      "median_best_score_at_256": 0.06634782708715647,
+      "median_score_reduction_percent": 1.2111156594572847,
+      "runs_improving_after_64": 5
+    }
+  },
+  "statistics": {
+    "bayesian": {
+      "median_training_score": 0.06657888519112021,
+      "best_training_score": 0.06566246942384169,
+      "worst_training_score": 0.06743381021078676,
+      "median_search_s": 84.87205742300102,
+      "training_feasible_runs": 5,
+      "holdout_passed_runs": 5,
+      "best_seed": 7
+    },
+    "differential_evolution": {
+      "median_training_score": 0.06634782708715647,
+      "best_training_score": 0.0651113031199202,
+      "worst_training_score": 0.06638172327075154,
+      "median_search_s": 79.09866274100023,
+      "training_feasible_runs": 5,
+      "holdout_passed_runs": 5,
+      "best_seed": 20261021
+    }
+  },
+  "runs": [
+    {
+      "method": "bayesian",
+      "seed": 7,
+      "best_training_score_at_64": 0.06666300853248686,
+      "best_training_score_at_256": 0.06566246942384169,
+      "improvement_after_64_percent": 1.5008910198788583,
+      "selected_trial": 131,
+      "gains": [
+        0.40075068856144125,
+        0.02,
+        0.34762767554726565,
+        0.3495907605024525,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04038129343340795,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.030097585171461105,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.03277679716642182,
+            "tail_max_rate_deg_s": 0.1639762334065439,
+            "final_distance_m": -0.0002501702110748738,
+            "final_speed_m_s": -0.0009420282440260053,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0162925720214844,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.030224444344639778,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.04062549160566644,
+            "tail_max_rate_deg_s": 0.17293845545380557,
+            "final_distance_m": 0.00012305259588174522,
+            "final_speed_m_s": 0.0009889330249279737,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0162925720214844,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.01742403581738472,
+            "passed": true,
+            "max_body_tilt_deg": 3.1652680363952883,
+            "tail_max_pitch_deg": 0.042506941917740494,
+            "tail_max_rate_deg_s": 0.3591870819701148,
+            "final_distance_m": 0.0002122454170603305,
+            "final_speed_m_s": -0.0010365376947447658,
+            "max_average_motor_current_a": 0.17130589485168457,
+            "max_on_current_estimate_a": 1.0201268196105957,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.017406443133950233,
+            "passed": true,
+            "max_body_tilt_deg": 3.1652680363952883,
+            "tail_max_pitch_deg": 0.042327379312709905,
+            "tail_max_rate_deg_s": 0.3746527646851393,
+            "final_distance_m": -0.0002290252159582451,
+            "final_speed_m_s": 0.0011322505306452513,
+            "max_average_motor_current_a": 0.17130589485168457,
+            "max_on_current_estimate_a": 1.0201268196105957,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.005662604700773954,
+            "passed": true,
+            "max_body_tilt_deg": 0.6090934317366999,
+            "tail_max_pitch_deg": 0.04107294903758161,
+            "tail_max_rate_deg_s": 0.16925987831743802,
+            "final_distance_m": -0.00011400465882616118,
+            "final_speed_m_s": -0.0011711192782968283,
+            "max_average_motor_current_a": 0.16093409061431885,
+            "max_on_current_estimate_a": 0.8402985334396362,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.005462647881358862,
+            "passed": true,
+            "max_body_tilt_deg": 0.6090934317366999,
+            "tail_max_pitch_deg": 0.027618965473957473,
+            "tail_max_rate_deg_s": 0.1555769683572794,
+            "final_distance_m": 0.00033523395541124046,
+            "final_speed_m_s": 0.0009524932829663157,
+            "max_average_motor_current_a": 0.16093406081199646,
+            "max_on_current_estimate_a": 0.8402986526489258,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 89.85342573200069,
+      "optimizer_settings": {
+        "kernel": "Matern-5/2",
+        "acquisition": "analytic EI with batch distance exclusion"
+      }
+    },
+    {
+      "method": "differential_evolution",
+      "seed": 7,
+      "best_training_score_at_64": 0.06812153069768101,
+      "best_training_score_at_256": 0.06638172327075154,
+      "improvement_after_64_percent": 2.553975826894772,
+      "selected_trial": 242,
+      "gains": [
+        0.9687109156795553,
+        0.04980024807149922,
+        0.4680520264884421,
+        0.38682455359129453,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.0442987799954911,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.028071967884898186,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.010408472915845532,
+            "tail_max_rate_deg_s": 0.12338085733222767,
+            "final_distance_m": -5.342721851775423e-05,
+            "final_speed_m_s": 6.676596240140498e-05,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.095042109489441,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.028083348646759987,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.010846789800413188,
+            "tail_max_rate_deg_s": 0.12473627635650497,
+            "final_distance_m": 4.5020580728305504e-05,
+            "final_speed_m_s": 8.355553291039541e-05,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0950419902801514,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.025119520723819733,
+            "passed": true,
+            "max_body_tilt_deg": 3.1091684910908004,
+            "tail_max_pitch_deg": 0.010358517986143224,
+            "tail_max_rate_deg_s": 0.12510146469347588,
+            "final_distance_m": 2.8039121389156207e-06,
+            "final_speed_m_s": -0.00013826903887093067,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0715620517730713,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.025132663547992706,
+            "passed": true,
+            "max_body_tilt_deg": 3.1091684910908004,
+            "tail_max_pitch_deg": 0.010749593840636059,
+            "tail_max_rate_deg_s": 0.12716214077019666,
+            "final_distance_m": -1.5358567907242104e-05,
+            "final_speed_m_s": 3.3243872167076916e-05,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0715620517730713,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.0165101271122694,
+            "passed": true,
+            "max_body_tilt_deg": 0.8690814875637676,
+            "tail_max_pitch_deg": 0.011719917594760912,
+            "tail_max_rate_deg_s": 0.1379788392183961,
+            "final_distance_m": 1.8177848687628284e-05,
+            "final_speed_m_s": -0.00020632255473174155,
+            "max_average_motor_current_a": 0.33843639492988586,
+            "max_on_current_estimate_a": 0.9386875629425049,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.01649998314678669,
+            "passed": true,
+            "max_body_tilt_deg": 0.8690814875637676,
+            "tail_max_pitch_deg": 0.011710952137711944,
+            "tail_max_rate_deg_s": 0.13571033595987916,
+            "final_distance_m": -7.290619396371767e-05,
+            "final_speed_m_s": 8.167586929630488e-05,
+            "max_average_motor_current_a": 0.33843639492988586,
+            "max_on_current_estimate_a": 0.9386875629425049,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 80.92441904599946,
+      "optimizer_settings": {
+        "strategy": "best1bin",
+        "mutation": [
+          0.5,
+          1
+        ],
+        "recombination": 0.7,
+        "generations": 15,
+        "population": 16,
+        "polish": false,
+        "updating": "deferred",
+        "scipy_message": "Maximum number of iterations has been exceeded."
+      }
+    },
+    {
+      "method": "differential_evolution",
+      "seed": 42,
+      "best_training_score_at_64": 0.06705502874683589,
+      "best_training_score_at_256": 0.06634782708715647,
+      "improvement_after_64_percent": 1.0546586481223197,
+      "selected_trial": 149,
+      "gains": [
+        0.9953206281370639,
+        0.04963841350558961,
+        0.4363080642110426,
+        0.36831343433287034,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04429180873557925,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.028045598417520523,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.010163828413081435,
+            "tail_max_rate_deg_s": 0.12426862184177066,
+            "final_distance_m": 3.90967725252267e-05,
+            "final_speed_m_s": -6.266659329412505e-05,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0952544212341309,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.028058314695954323,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.01005832983809984,
+            "tail_max_rate_deg_s": 0.12238348963084715,
+            "final_distance_m": -3.058075890294276e-05,
+            "final_speed_m_s": 4.710545181296766e-05,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0952544212341309,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.02518756315112114,
+            "passed": true,
+            "max_body_tilt_deg": 2.9492216824283806,
+            "tail_max_pitch_deg": 0.00962078918718908,
+            "tail_max_rate_deg_s": 0.12992680657910477,
+            "final_distance_m": -8.999140845844522e-06,
+            "final_speed_m_s": -0.00025070642004720867,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.067367672920227,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.025218691676855087,
+            "passed": true,
+            "max_body_tilt_deg": 2.9492216824283806,
+            "tail_max_pitch_deg": 0.010768123396802363,
+            "tail_max_rate_deg_s": 0.12954071412801393,
+            "final_distance_m": -2.1402398488135077e-05,
+            "final_speed_m_s": 0.00028032282716594636,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.067367672920227,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.01648680493235588,
+            "passed": true,
+            "max_body_tilt_deg": 0.8393011690914244,
+            "tail_max_pitch_deg": 0.010273403256965885,
+            "tail_max_rate_deg_s": 0.1311115108947714,
+            "final_distance_m": 2.1286585251800716e-05,
+            "final_speed_m_s": 0.00016919606423471123,
+            "max_average_motor_current_a": 0.33843639492988586,
+            "max_on_current_estimate_a": 0.9376487135887146,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.016491463407874107,
+            "passed": true,
+            "max_body_tilt_deg": 0.8393011690914244,
+            "tail_max_pitch_deg": 0.010071991883966519,
+            "tail_max_rate_deg_s": 0.12619712308588113,
+            "final_distance_m": -3.8353078707586974e-05,
+            "final_speed_m_s": -0.00017899683734867722,
+            "max_average_motor_current_a": 0.33843639492988586,
+            "max_on_current_estimate_a": 0.9376487135887146,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 78.797171496999,
+      "optimizer_settings": {
+        "strategy": "best1bin",
+        "mutation": [
+          0.5,
+          1
+        ],
+        "recombination": 0.7,
+        "generations": 15,
+        "population": 16,
+        "polish": false,
+        "updating": "deferred",
+        "scipy_message": "Maximum number of iterations has been exceeded."
+      }
+    },
+    {
+      "method": "bayesian",
+      "seed": 42,
+      "best_training_score_at_64": 0.06956818141043186,
+      "best_training_score_at_256": 0.06743381021078676,
+      "improvement_after_64_percent": 3.0680278776484604,
+      "selected_trial": 209,
+      "gains": [
+        0.3268157489597797,
+        0.024075009748339656,
+        0.33037395742721853,
+        0.4992603968828916,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04215058544650674,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.030992142856121063,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.044205971484101006,
+            "tail_max_rate_deg_s": 0.38425032772734435,
+            "final_distance_m": -0.000569360563531518,
+            "final_speed_m_s": -0.00022975403408054262,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 0.9694601893424988,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.03112819977104664,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.04299650106258645,
+            "tail_max_rate_deg_s": 0.374249329956859,
+            "final_distance_m": 0.0005854862974956632,
+            "final_speed_m_s": -0.0003416478866711259,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 0.9694601893424988,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.017617108300328255,
+            "passed": true,
+            "max_body_tilt_deg": 4.0558888456718085,
+            "tail_max_pitch_deg": 0.04346305167467658,
+            "tail_max_rate_deg_s": 0.37559212913942763,
+            "final_distance_m": -0.0004262806032784283,
+            "final_speed_m_s": 0.0005827720160596073,
+            "max_average_motor_current_a": 0.17183201014995575,
+            "max_on_current_estimate_a": 1.0234906673431396,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.017397193238139153,
+            "passed": true,
+            "max_body_tilt_deg": 4.0558888456718085,
+            "tail_max_pitch_deg": 0.04317138792288249,
+            "tail_max_rate_deg_s": 0.36907364739157605,
+            "final_distance_m": 0.0005432979087345302,
+            "final_speed_m_s": -0.00016905755910556763,
+            "max_average_motor_current_a": 0.17183201014995575,
+            "max_on_current_estimate_a": 1.0234906673431396,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.007874448783695698,
+            "passed": true,
+            "max_body_tilt_deg": 0.7863387083283819,
+            "tail_max_pitch_deg": 0.04243449788983473,
+            "tail_max_rate_deg_s": 0.38256465838452636,
+            "final_distance_m": -5.235295611782931e-05,
+            "final_speed_m_s": 0.0008658908773213625,
+            "max_average_motor_current_a": 0.20286916196346283,
+            "max_on_current_estimate_a": 0.8594947457313538,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.007817520759999752,
+            "passed": true,
+            "max_body_tilt_deg": 0.7863387083283819,
+            "tail_max_pitch_deg": 0.04376832911406442,
+            "tail_max_rate_deg_s": 0.3779956620361845,
+            "final_distance_m": 5.895453068660572e-05,
+            "final_speed_m_s": -0.0009626034297980368,
+            "max_average_motor_current_a": 0.20286916196346283,
+            "max_on_current_estimate_a": 0.8594947457313538,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 84.87205742300102,
+      "optimizer_settings": {
+        "kernel": "Matern-5/2",
+        "acquisition": "analytic EI with batch distance exclusion"
+      }
+    },
+    {
+      "method": "bayesian",
+      "seed": 123,
+      "best_training_score_at_64": 0.06657888519112021,
+      "best_training_score_at_256": 0.06657888519112021,
+      "improvement_after_64_percent": 0.0,
+      "selected_trial": 54,
+      "gains": [
+        0.9029041539877654,
+        0.05318694397807122,
+        0.42563576009124515,
+        0.39232490686699745,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04433321952819824,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.028218548744916916,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.011162882817671312,
+            "tail_max_rate_deg_s": 0.12831042630376538,
+            "final_distance_m": -7.716416803305037e-06,
+            "final_speed_m_s": -0.0002153783425455913,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0701723098754883,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.028213584795594215,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.010721550211152004,
+            "tail_max_rate_deg_s": 0.12376633613351028,
+            "final_distance_m": 9.1737510956591e-06,
+            "final_speed_m_s": 0.00019621063256636262,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0701721906661987,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.025159364566206932,
+            "passed": true,
+            "max_body_tilt_deg": 2.994017478099909,
+            "tail_max_pitch_deg": 0.010827366449960964,
+            "tail_max_rate_deg_s": 0.12623758395258552,
+            "final_distance_m": 3.195071258232929e-05,
+            "final_speed_m_s": -0.00012311215687077492,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0630714893341064,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.025164974853396416,
+            "passed": true,
+            "max_body_tilt_deg": 2.994017478099909,
+            "tail_max_pitch_deg": 0.011150448905184447,
+            "tail_max_rate_deg_s": 0.1286104610393567,
+            "final_distance_m": -5.211445750319399e-05,
+            "final_speed_m_s": 0.00013658663374371827,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0630714893341064,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.01612422801554203,
+            "passed": true,
+            "max_body_tilt_deg": 0.7677033375907956,
+            "tail_max_pitch_deg": 0.01015775528101181,
+            "tail_max_rate_deg_s": 0.12552948543472559,
+            "final_distance_m": -4.207091478747316e-05,
+            "final_speed_m_s": -0.00016606874123681337,
+            "max_average_motor_current_a": 0.33469289541244507,
+            "max_on_current_estimate_a": 0.9341168403625488,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.016135146841406822,
+            "passed": true,
+            "max_body_tilt_deg": 0.7677033375907956,
+            "tail_max_pitch_deg": 0.009926560214466154,
+            "tail_max_rate_deg_s": 0.1216601966101266,
+            "final_distance_m": 4.320278821978718e-05,
+            "final_speed_m_s": 0.00019569025607779622,
+            "max_average_motor_current_a": 0.33469289541244507,
+            "max_on_current_estimate_a": 0.9341168403625488,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 84.71827826899971,
+      "optimizer_settings": {
+        "kernel": "Matern-5/2",
+        "acquisition": "analytic EI with batch distance exclusion"
+      }
+    },
+    {
+      "method": "differential_evolution",
+      "seed": 123,
+      "best_training_score_at_64": 0.06716122722718865,
+      "best_training_score_at_256": 0.06637561228126287,
+      "improvement_after_64_percent": 1.1697447744190903,
+      "selected_trial": 236,
+      "gains": [
+        1.0524020898943316,
+        0.0496610956701711,
+        0.46175686242003205,
+        0.35481458008453576,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04428140275801222,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.02800856903195381,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.00903444346035927,
+            "tail_max_rate_deg_s": 0.12171976066216586,
+            "final_distance_m": -8.692145456734579e-06,
+            "final_speed_m_s": -8.723200153326616e-05,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.105039358139038,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.02803291566669941,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.009514911249893966,
+            "tail_max_rate_deg_s": 0.12757091158376604,
+            "final_distance_m": -2.44826078414917e-05,
+            "final_speed_m_s": 1.030713610816747e-05,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.1050392389297485,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.025264019146561623,
+            "passed": true,
+            "max_body_tilt_deg": 2.8971890878878117,
+            "tail_max_pitch_deg": 0.008964765025407226,
+            "tail_max_rate_deg_s": 0.12849143965698392,
+            "final_distance_m": 1.542817335575819e-05,
+            "final_speed_m_s": -0.00012263246753718704,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0693168640136719,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.025292737409472466,
+            "passed": true,
+            "max_body_tilt_deg": 2.8971890878878117,
+            "tail_max_pitch_deg": 0.009383024899394582,
+            "tail_max_rate_deg_s": 0.12981061332193522,
+            "final_distance_m": -3.11811818392016e-05,
+            "final_speed_m_s": 0.00012268793943803757,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0693168640136719,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.016486916691064835,
+            "passed": true,
+            "max_body_tilt_deg": 0.8462665213018093,
+            "tail_max_pitch_deg": 0.010460444719034446,
+            "tail_max_rate_deg_s": 0.12957048948392694,
+            "final_distance_m": 5.591201625065878e-05,
+            "final_speed_m_s": -5.1175036787753925e-05,
+            "max_average_motor_current_a": 0.33843639492988586,
+            "max_on_current_estimate_a": 0.9386875629425049,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.016455138102173805,
+            "passed": true,
+            "max_body_tilt_deg": 0.8462665213018093,
+            "tail_max_pitch_deg": 0.00929702638109124,
+            "tail_max_rate_deg_s": 0.13313071224858286,
+            "final_distance_m": -3.296735712865484e-06,
+            "final_speed_m_s": 0.00010725070751504973,
+            "max_average_motor_current_a": 0.33843639492988586,
+            "max_on_current_estimate_a": 0.9386875629425049,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 79.09866274100023,
+      "optimizer_settings": {
+        "strategy": "best1bin",
+        "mutation": [
+          0.5,
+          1
+        ],
+        "recombination": 0.7,
+        "generations": 15,
+        "population": 16,
+        "polish": false,
+        "updating": "deferred",
+        "scipy_message": "Maximum number of iterations has been exceeded."
+      }
+    },
+    {
+      "method": "differential_evolution",
+      "seed": 20261021,
+      "best_training_score_at_64": 0.06739734672009945,
+      "best_training_score_at_256": 0.0651113031199202,
+      "improvement_after_64_percent": 3.3918896090571193,
+      "selected_trial": 197,
+      "gains": [
+        0.3626432845097475,
+        0.020857769171907126,
+        0.30785580655259687,
+        0.4406545392458052,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04141271370463073,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.030020665377378464,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.03426622196757425,
+            "tail_max_rate_deg_s": 0.17428844501130122,
+            "final_distance_m": -0.00023110120673663914,
+            "final_speed_m_s": -0.0007859294419176877,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0078258514404297,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.03062894195318222,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.04278718311196267,
+            "tail_max_rate_deg_s": 0.38683528752392976,
+            "final_distance_m": -0.00033021895796991885,
+            "final_speed_m_s": 0.000858643907122314,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0078258514404297,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.018509497866034508,
+            "passed": true,
+            "max_body_tilt_deg": 3.8886683124301484,
+            "tail_max_pitch_deg": 0.0422504463030547,
+            "tail_max_rate_deg_s": 0.38485253163264266,
+            "final_distance_m": 0.0004887234535999596,
+            "final_speed_m_s": -0.0007139131776057184,
+            "max_average_motor_current_a": 0.19638551771640778,
+            "max_on_current_estimate_a": 1.0321749448776245,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.01833575777709484,
+            "passed": true,
+            "max_body_tilt_deg": 3.8886683124301484,
+            "tail_max_pitch_deg": 0.041951378732922026,
+            "tail_max_rate_deg_s": 0.38085030758327965,
+            "final_distance_m": -0.0006423415616154671,
+            "final_speed_m_s": 0.00025027873925864697,
+            "max_average_motor_current_a": 0.19638551771640778,
+            "max_on_current_estimate_a": 1.0321749448776245,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.006510555278509855,
+            "passed": true,
+            "max_body_tilt_deg": 0.7743019406592625,
+            "tail_max_pitch_deg": 0.02156201675049764,
+            "tail_max_rate_deg_s": 0.16087891604071503,
+            "final_distance_m": -0.00035821754136122763,
+            "final_speed_m_s": -0.0007248860201798379,
+            "max_average_motor_current_a": 0.1895809769630432,
+            "max_on_current_estimate_a": 0.8505001068115234,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.006640625186264515,
+            "passed": true,
+            "max_body_tilt_deg": 0.7743019406592625,
+            "tail_max_pitch_deg": 0.03377775005010594,
+            "tail_max_rate_deg_s": 0.18352659602886082,
+            "final_distance_m": 0.00021639875194523484,
+            "final_speed_m_s": 0.0009286677814088762,
+            "max_average_motor_current_a": 0.1895809769630432,
+            "max_on_current_estimate_a": 0.8505001068115234,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 79.52794351699958,
+      "optimizer_settings": {
+        "strategy": "best1bin",
+        "mutation": [
+          0.5,
+          1
+        ],
+        "recombination": 0.7,
+        "generations": 15,
+        "population": 16,
+        "polish": false,
+        "updating": "deferred",
+        "scipy_message": "Maximum number of iterations has been exceeded."
+      }
+    },
+    {
+      "method": "bayesian",
+      "seed": 20261021,
+      "best_training_score_at_64": 0.06699263211339712,
+      "best_training_score_at_256": 0.06584314379142597,
+      "improvement_after_64_percent": 1.7158429004930476,
+      "selected_trial": 230,
+      "gains": [
+        0.40347194150090215,
+        0.023708595521748067,
+        0.28364032772369685,
+        0.42862439691089094,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04174097146218021,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.030072642490267754,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.036308145039557246,
+            "tail_max_rate_deg_s": 0.3305263809131248,
+            "final_distance_m": 0.00028118936461396515,
+            "final_speed_m_s": -0.0007871072739362717,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0101653337478638,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.02999967709183693,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.03702736262513827,
+            "tail_max_rate_deg_s": 0.3381928947304939,
+            "final_distance_m": -0.0004778191214427352,
+            "final_speed_m_s": 0.0006647097179666162,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.0101653337478638,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.01901213638484478,
+            "passed": true,
+            "max_body_tilt_deg": 3.6130291982851137,
+            "tail_max_pitch_deg": 0.03693221355432749,
+            "tail_max_rate_deg_s": 0.34346067812786624,
+            "final_distance_m": 0.0005765228415839374,
+            "final_speed_m_s": -1.2450062058633193e-05,
+            "max_average_motor_current_a": 0.21334102749824524,
+            "max_on_current_estimate_a": 1.0325051546096802,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.01903359964489937,
+            "passed": true,
+            "max_body_tilt_deg": 3.6130291982851137,
+            "tail_max_pitch_deg": 0.036776363178300214,
+            "tail_max_rate_deg_s": 0.3360741220251883,
+            "final_distance_m": -0.0005773833836428821,
+            "final_speed_m_s": 0.000176323126652278,
+            "max_average_motor_current_a": 0.21334102749824524,
+            "max_on_current_estimate_a": 1.0325050354003906,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.008610430173575878,
+            "passed": true,
+            "max_body_tilt_deg": 0.7697396944588114,
+            "tail_max_pitch_deg": 0.03643178880581167,
+            "tail_max_rate_deg_s": 0.3423105116242331,
+            "final_distance_m": 0.00015095999697223306,
+            "final_speed_m_s": -0.0009242922533303499,
+            "max_average_motor_current_a": 0.21898706257343292,
+            "max_on_current_estimate_a": 0.8647322654724121,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.008390451781451702,
+            "passed": true,
+            "max_body_tilt_deg": 0.7697396944588114,
+            "tail_max_pitch_deg": 0.03504425988830737,
+            "tail_max_rate_deg_s": 0.3235654576535298,
+            "final_distance_m": -0.00026919611264020205,
+            "final_speed_m_s": 0.000890167139004916,
+            "max_average_motor_current_a": 0.21898706257343292,
+            "max_on_current_estimate_a": 0.8647322654724121,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 85.65916034600014,
+      "optimizer_settings": {
+        "kernel": "Matern-5/2",
+        "acquisition": "analytic EI with batch distance exclusion"
+      }
+    },
+    {
+      "method": "bayesian",
+      "seed": 20261022,
+      "best_training_score_at_64": 0.06744568480644375,
+      "best_training_score_at_256": 0.0668665535049513,
+      "improvement_after_64_percent": 0.8586632386555881,
+      "selected_trial": 71,
+      "gains": [
+        1.1534742801380173,
+        0.04290900101182574,
+        0.39503972037127955,
+        0.33706477299243354,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.044023370525489255,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.027998674660921097,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.008046210469982967,
+            "tail_max_rate_deg_s": 0.12660385284682746,
+            "final_distance_m": -8.047521077969577e-06,
+            "final_speed_m_s": 0.00017224748444277793,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.1392107009887695,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.02802838198840618,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.00947113950902037,
+            "tail_max_rate_deg_s": 0.12880592184349543,
+            "final_distance_m": 2.2230147806112655e-05,
+            "final_speed_m_s": 0.00020605571626219898,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.1392107009887695,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.02549346722662449,
+            "passed": true,
+            "max_body_tilt_deg": 3.0357038301517894,
+            "tail_max_pitch_deg": 0.00888404422896011,
+            "tail_max_rate_deg_s": 0.12158414405454408,
+            "final_distance_m": -3.5988523450214416e-05,
+            "final_speed_m_s": -5.7185541663784534e-05,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0827312469482422,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.025498803704977036,
+            "passed": true,
+            "max_body_tilt_deg": 3.0357038301517894,
+            "tail_max_pitch_deg": 0.009364568714401002,
+            "tail_max_rate_deg_s": 0.1412869452933566,
+            "final_distance_m": -4.1968652908508375e-07,
+            "final_speed_m_s": -1.9600538507802412e-05,
+            "max_average_motor_current_a": 0.31241682171821594,
+            "max_on_current_estimate_a": 1.0827312469482422,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.015512232668697834,
+            "passed": true,
+            "max_body_tilt_deg": 0.9857604352163318,
+            "tail_max_pitch_deg": 0.009223896165967829,
+            "tail_max_rate_deg_s": 0.1254302742689885,
+            "final_distance_m": 8.416299351665657e-06,
+            "final_speed_m_s": 0.00018094920960720628,
+            "max_average_motor_current_a": 0.32799774408340454,
+            "max_on_current_estimate_a": 0.9206696152687073,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.015480943955481052,
+            "passed": true,
+            "max_body_tilt_deg": 0.9857604352163318,
+            "tail_max_pitch_deg": 0.00911200512756259,
+            "tail_max_rate_deg_s": 0.13054580581285039,
+            "final_distance_m": 3.467896021902561e-05,
+            "final_speed_m_s": 0.0002062576822936535,
+            "max_average_motor_current_a": 0.32799774408340454,
+            "max_on_current_estimate_a": 0.9206696152687073,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 84.57029294800122,
+      "optimizer_settings": {
+        "kernel": "Matern-5/2",
+        "acquisition": "analytic EI with batch distance exclusion"
+      }
+    },
+    {
+      "method": "differential_evolution",
+      "seed": 20261022,
+      "best_training_score_at_64": 0.06670852133538574,
+      "best_training_score_at_256": 0.06557994883041829,
+      "improvement_after_64_percent": 1.6917966136491103,
+      "selected_trial": 206,
+      "gains": [
+        0.39419212356284855,
+        0.02319816771838476,
+        0.3244187493364335,
+        0.4259784397534436,
+        0.04
+      ],
+      "training_passed": true,
+      "holdout": {
+        "objective": 0.04096903690757851,
+        "passed": true,
+        "cases": [
+          {
+            "case": "lean_+7",
+            "cost": 0.029691582545638084,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.02264535879104505,
+            "tail_max_rate_deg_s": 0.15412141769255266,
+            "final_distance_m": -0.00030875473748892546,
+            "final_speed_m_s": -0.0007169413147494197,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.009770154953003,
+            "faulted": false
+          },
+          {
+            "case": "lean_-7",
+            "cost": 0.029677774757146835,
+            "passed": true,
+            "max_body_tilt_deg": 6.962354184226144,
+            "tail_max_pitch_deg": 0.030850680485424914,
+            "tail_max_rate_deg_s": 0.17224437750004268,
+            "final_distance_m": 0.00023331015836447477,
+            "final_speed_m_s": 0.0008391522569581866,
+            "max_average_motor_current_a": 0.3829411566257477,
+            "max_on_current_estimate_a": 1.009770154953003,
+            "faulted": false
+          },
+          {
+            "case": "moving_+0.12",
+            "cost": 0.018858004361391068,
+            "passed": true,
+            "max_body_tilt_deg": 3.641154636626757,
+            "tail_max_pitch_deg": 0.03901573141113881,
+            "tail_max_rate_deg_s": 0.3447402713801858,
+            "final_distance_m": -8.719102333998308e-05,
+            "final_speed_m_s": -0.0009174181031994522,
+            "max_average_motor_current_a": 0.21083064377307892,
+            "max_on_current_estimate_a": 1.0287917852401733,
+            "faulted": false
+          },
+          {
+            "case": "moving_-0.12",
+            "cost": 0.019005676731467247,
+            "passed": true,
+            "max_body_tilt_deg": 3.641154636626757,
+            "tail_max_pitch_deg": 0.038735717000541424,
+            "tail_max_rate_deg_s": 0.35196735857399974,
+            "final_distance_m": -0.00016070972196757793,
+            "final_speed_m_s": 0.0008863229304552078,
+            "max_average_motor_current_a": 0.21083064377307892,
+            "max_on_current_estimate_a": 1.0287917852401733,
+            "faulted": false
+          },
+          {
+            "case": "rotating_+15",
+            "cost": 0.007678421214222908,
+            "passed": true,
+            "max_body_tilt_deg": 0.7582139636778265,
+            "tail_max_pitch_deg": 0.03777038248616185,
+            "tail_max_rate_deg_s": 0.3431371245963633,
+            "final_distance_m": -0.0005667617078870535,
+            "final_speed_m_s": 0.00013111496809870005,
+            "max_average_motor_current_a": 0.20965884625911713,
+            "max_on_current_estimate_a": 0.8617440462112427,
+            "faulted": false
+          },
+          {
+            "case": "rotating_-15",
+            "cost": 0.007290640380233526,
+            "passed": true,
+            "max_body_tilt_deg": 0.7582139636778265,
+            "tail_max_pitch_deg": 0.007479433168424176,
+            "tail_max_rate_deg_s": 0.12226867041563953,
+            "final_distance_m": 0.0006351019837893546,
+            "final_speed_m_s": 0.0003888361097779125,
+            "max_average_motor_current_a": 0.20965883135795593,
+            "max_on_current_estimate_a": 0.8617440462112427,
+            "faulted": false
+          }
+        ]
+      },
+      "search_elapsed_s": 79.00274757400075,
+      "optimizer_settings": {
+        "strategy": "best1bin",
+        "mutation": [
+          0.5,
+          1
+        ],
+        "recombination": 0.7,
+        "generations": 15,
+        "population": 16,
+        "polish": false,
+        "updating": "deferred",
+        "scipy_message": "Maximum number of iterations has been exceeded."
+      }
+    }
+  ],
+  "active_reference": {
+    "gains": [
+      0.5798259020476919,
+      0.026747379936393645,
+      0.31142919235502187,
+      0.3582299062323597,
+      0.04
+    ],
+    "objective": 0.0666596005903557,
+    "all_training_cases_pass": true,
+    "cases": [
+      {
+        "case": "lean_+5",
+        "cost": 0.026191551238298416,
+        "passed": true,
+        "max_body_tilt_deg": 4.9623450216521805,
+        "tail_max_pitch_deg": 0.026450928087185913,
+        "tail_max_rate_deg_s": 0.23994467894468016,
+        "final_distance_m": 0.0003019899013452232,
+        "final_speed_m_s": -0.00021648920665029436,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.0006558895111084,
+        "faulted": false
+      },
+      {
+        "case": "lean_-5",
+        "cost": 0.02619929052889347,
+        "passed": true,
+        "max_body_tilt_deg": 4.9623450216521805,
+        "tail_max_pitch_deg": 0.02625552231142673,
+        "tail_max_rate_deg_s": 0.23836255633689662,
+        "final_distance_m": -0.00032441914663650095,
+        "final_speed_m_s": 0.00011328272375976667,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.0006558895111084,
+        "faulted": false
+      },
+      {
+        "case": "lean_+10",
+        "cost": 0.054194312542676926,
+        "passed": true,
+        "max_body_tilt_deg": 9.962354267708749,
+        "tail_max_pitch_deg": 0.02104630411762862,
+        "tail_max_rate_deg_s": 0.14457405387270456,
+        "final_distance_m": 0.00014529346663039178,
+        "final_speed_m_s": 0.0006873186794109643,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.1512794494628906,
+        "faulted": false
+      },
+      {
+        "case": "lean_-10",
+        "cost": 0.05420660972595215,
+        "passed": true,
+        "max_body_tilt_deg": 9.962354267708749,
+        "tail_max_pitch_deg": 0.022091676576290974,
+        "tail_max_rate_deg_s": 0.14372644340496182,
+        "final_distance_m": -0.00012641608191188425,
+        "final_speed_m_s": -0.0007271854556165636,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.1512794494628906,
+        "faulted": false
+      },
+      {
+        "case": "moving_+0.08",
+        "cost": 0.01554710604250431,
+        "passed": true,
+        "max_body_tilt_deg": 2.2461147521912745,
+        "tail_max_pitch_deg": 0.01628443830156655,
+        "tail_max_rate_deg_s": 0.13245129518915172,
+        "final_distance_m": 0.00021226727403700352,
+        "final_speed_m_s": 0.0005458735395222902,
+        "max_average_motor_current_a": 0.22656798362731934,
+        "max_on_current_estimate_a": 0.9911574721336365,
+        "faulted": false
+      },
+      {
+        "case": "moving_-0.08",
+        "cost": 0.015575550496578217,
+        "passed": true,
+        "max_body_tilt_deg": 2.2461147521912745,
+        "tail_max_pitch_deg": 0.017794735533832526,
+        "tail_max_rate_deg_s": 0.1369986003507935,
+        "final_distance_m": -0.00019858834275510162,
+        "final_speed_m_s": -0.0005575552931986749,
+        "max_average_motor_current_a": 0.22656798362731934,
+        "max_on_current_estimate_a": 0.9911574721336365,
+        "faulted": false
+      },
+      {
+        "case": "rotating_+10",
+        "cost": 0.008128548040986061,
+        "passed": true,
+        "max_body_tilt_deg": 0.6440697632592773,
+        "tail_max_pitch_deg": 0.026946815495679375,
+        "tail_max_rate_deg_s": 0.26564126466486976,
+        "final_distance_m": 0.0002464756544213742,
+        "final_speed_m_s": -0.0006293817423284054,
+        "max_average_motor_current_a": 0.22552289068698883,
+        "max_on_current_estimate_a": 0.8726015686988831,
+        "faulted": false
+      },
+      {
+        "case": "rotating_-10",
+        "cost": 0.007994177751243114,
+        "passed": true,
+        "max_body_tilt_deg": 0.6440697632592773,
+        "tail_max_pitch_deg": 0.025435904613605162,
+        "tail_max_rate_deg_s": 0.23355276913988537,
+        "final_distance_m": 2.6769761461764574e-05,
+        "final_speed_m_s": 0.0005636390997096896,
+        "max_average_motor_current_a": 0.22552289068698883,
+        "max_on_current_estimate_a": 0.8726015686988831,
+        "faulted": false
+      }
+    ]
+  },
+  "finalization": {
+    "finalists": {
+      "bayesian": {
+        "seed": 7,
+        "training_score": 0.06566246942384169,
+        "holdout_score": 0.04038129343340795,
+        "gpu_passed": true,
+        "gazebo_balance_passed": true,
+        "movement_passed": true,
+        "balance_cases": [
+          {
+            "profile": "candidate",
+            "scenario": "nominal_5deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-bayesian/gazebo-validation/candidate/nominal_5deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 5.639389473418894,
+            "tail_max_pitch_deg": 0.042028953396795424,
+            "tail_max_rate_deg_s": 0.36743203107421835,
+            "final_position_m": 0.00020409237611340836,
+            "final_velocity_m_s": -0.0010196604345415283,
+            "maximum_current_a": 0.40501457033481314,
+            "maximum_on_estimate_a": 1.0122168851099738,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 110.81697161639832,
+            "mean_pitch_squared": 8.25625837864712e-05,
+            "tail_mean_pitch_squared": 1.8568883262762803e-07,
+            "mean_position_squared": 3.6122333775884804e-05,
+            "tail_mean_position_squared": 2.6631631115685375e-07,
+            "mean_velocity_squared": 0.00017282389059848096,
+            "tail_mean_velocity_squared": 5.704834171629052e-07,
+            "mean_rate_squared": 0.013116210355958573,
+            "tail_mean_rate_squared": 3.1190796276266157e-06,
+            "mean_current_squared": 0.0005780466675199734,
+            "settling_time_s": 0.795,
+            "cost": 0.023798608816565765,
+            "largest_controller_sample_gap_s": 0.005000000000000782,
+            "largest_motor_sample_gap_s": 0.022,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          },
+          {
+            "profile": "candidate",
+            "scenario": "nominal_minus5deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-bayesian/gazebo-validation/candidate/nominal_minus5deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 4.999999999999999,
+            "tail_max_pitch_deg": 0.042576752054072735,
+            "tail_max_rate_deg_s": 0.3577350087873321,
+            "final_position_m": 4.8576290971671376e-05,
+            "final_velocity_m_s": -0.0009619771578211264,
+            "maximum_current_a": 0.36132352941176465,
+            "maximum_on_estimate_a": 0.9785496097962307,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 97.08404411764704,
+            "mean_pitch_squared": 3.5831745434332686e-05,
+            "tail_mean_pitch_squared": 1.832933365443287e-07,
+            "mean_position_squared": 1.3035896673033204e-05,
+            "tail_mean_position_squared": 2.007660217638089e-07,
+            "mean_velocity_squared": 9.783465897544628e-05,
+            "tail_mean_velocity_squared": 5.772097880845924e-07,
+            "mean_rate_squared": 0.010272464870642125,
+            "tail_mean_rate_squared": 3.0338992173671336e-06,
+            "mean_current_squared": 0.0003311534917061467,
+            "settling_time_s": 0.265,
+            "cost": 0.010191572939499616,
+            "largest_controller_sample_gap_s": 0.005000000000000782,
+            "largest_motor_sample_gap_s": 0.023000000000001464,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          },
+          {
+            "profile": "candidate",
+            "scenario": "nominal_10deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-bayesian/gazebo-validation/candidate/nominal_10deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 11.353971076037826,
+            "tail_max_pitch_deg": 0.043409333570518085,
+            "tail_max_rate_deg_s": 0.3723789390768339,
+            "final_position_m": 0.0005675648976883152,
+            "final_velocity_m_s": -0.00048524000376055936,
+            "maximum_current_a": 0.4324885699390817,
+            "maximum_on_estimate_a": 1.1663394502302518,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 118.4181291345105,
+            "mean_pitch_squared": 0.0005343092202847099,
+            "tail_mean_pitch_squared": 1.6278664769872894e-07,
+            "mean_position_squared": 0.00038584813468288745,
+            "tail_mean_position_squared": 1.8745157795452935e-07,
+            "mean_velocity_squared": 0.0011766308242867917,
+            "tail_mean_velocity_squared": 7.759207929806533e-07,
+            "mean_rate_squared": 0.03506502103683845,
+            "tail_mean_rate_squared": 3.042489973695993e-06,
+            "mean_current_squared": 0.0011342270312324342,
+            "settling_time_s": 2.44,
+            "cost": 0.09909814786296953,
+            "largest_controller_sample_gap_s": 0.01499999999999968,
+            "largest_motor_sample_gap_s": 0.025000000000000355,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          },
+          {
+            "profile": "candidate",
+            "scenario": "nominal_minus10deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-bayesian/gazebo-validation/candidate/nominal_minus10deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 10.0,
+            "tail_max_pitch_deg": 0.05181542599856622,
+            "tail_max_rate_deg_s": 0.44400835602254596,
+            "final_position_m": -0.0005357136540728069,
+            "final_velocity_m_s": 0.000740453832363621,
+            "maximum_current_a": 0.3847388920086997,
+            "maximum_on_estimate_a": 1.1116339361691219,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 104.95313869053385,
+            "mean_pitch_squared": 0.00023278042410736476,
+            "tail_mean_pitch_squared": 1.8970896330111864e-07,
+            "mean_position_squared": 0.00012067225499102124,
+            "tail_mean_position_squared": 2.526493802024977e-07,
+            "mean_velocity_squared": 0.00047685138039642517,
+            "tail_mean_velocity_squared": 7.019337869586879e-07,
+            "mean_rate_squared": 0.029953716044378926,
+            "tail_mean_rate_squared": 5.214746299448601e-06,
+            "mean_current_squared": 0.0007515150951440163,
+            "settling_time_s": 1.94,
+            "cost": 0.05901540479579469,
+            "largest_controller_sample_gap_s": 0.005000000000000782,
+            "largest_motor_sample_gap_s": 0.019999999999999574,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          }
+        ],
+        "gazebo_response_cases_passed": 4,
+        "gazebo_electrical_cases_passed": 4,
+        "movement_completion_sim_s": 34.29,
+        "leg_distances_m": [
+          0.4958282517785428,
+          0.4960718228021587
+        ],
+        "turn_errors_deg": [
+          0.37247378534664305
+        ]
+      },
+      "differential_evolution": {
+        "seed": 20261021,
+        "training_score": 0.0651113031199202,
+        "holdout_score": 0.04141271370463073,
+        "gpu_passed": true,
+        "gazebo_balance_passed": true,
+        "movement_passed": true,
+        "balance_cases": [
+          {
+            "profile": "candidate",
+            "scenario": "nominal_5deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-differential_evolution/gazebo-validation/candidate/nominal_5deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 4.999999999999999,
+            "tail_max_pitch_deg": 0.04082763618184827,
+            "tail_max_rate_deg_s": 0.36356775832096067,
+            "final_position_m": -0.00036537766300340945,
+            "final_velocity_m_s": 0.0007229722839243226,
+            "maximum_current_a": 0.3765183181401911,
+            "maximum_on_estimate_a": 0.9674182725941717,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 102.63282346326048,
+            "mean_pitch_squared": 3.9463653819356516e-05,
+            "tail_mean_pitch_squared": 1.4466418929255393e-07,
+            "mean_position_squared": 1.4362666813273696e-05,
+            "tail_mean_position_squared": 1.3402001163352635e-07,
+            "mean_velocity_squared": 9.928022277055172e-05,
+            "tail_mean_velocity_squared": 5.164404256172592e-07,
+            "mean_rate_squared": 0.009766473250102955,
+            "tail_mean_rate_squared": 3.1287138858334746e-06,
+            "mean_current_squared": 0.0002847874879461152,
+            "settling_time_s": 0.29500000000000004,
+            "cost": 0.010707204924228345,
+            "largest_controller_sample_gap_s": 0.005000000000000782,
+            "largest_motor_sample_gap_s": 0.016999999999999904,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          },
+          {
+            "profile": "candidate",
+            "scenario": "nominal_minus5deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-differential_evolution/gazebo-validation/candidate/nominal_minus5deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 4.999999999999999,
+            "tail_max_pitch_deg": 0.014427857509272675,
+            "tail_max_rate_deg_s": 0.15137645705969296,
+            "final_position_m": -0.00044305962006711944,
+            "final_velocity_m_s": -0.0008072324142610335,
+            "maximum_current_a": 0.3484056504125226,
+            "maximum_on_estimate_a": 0.9663266948966889,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 95.78751958823293,
+            "mean_pitch_squared": 4.00877954801382e-05,
+            "tail_mean_pitch_squared": 1.1997740266046556e-08,
+            "mean_position_squared": 1.5025286780375676e-05,
+            "tail_mean_position_squared": 7.226482896377214e-08,
+            "mean_velocity_squared": 9.070078516440811e-05,
+            "tail_mean_velocity_squared": 8.306938285712557e-07,
+            "mean_rate_squared": 0.009610098473161636,
+            "tail_mean_rate_squared": 1.099871459921477e-06,
+            "mean_current_squared": 0.00028347553190972004,
+            "settling_time_s": 0.30000000000000004,
+            "cost": 0.010259598628295539,
+            "largest_controller_sample_gap_s": 0.005000000000000782,
+            "largest_motor_sample_gap_s": 0.02400000000000002,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          },
+          {
+            "profile": "candidate",
+            "scenario": "nominal_10deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-differential_evolution/gazebo-validation/candidate/nominal_10deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 10.0,
+            "tail_max_pitch_deg": 0.03597140049482091,
+            "tail_max_rate_deg_s": 0.1838254633494536,
+            "final_position_m": 0.0001517244398865736,
+            "final_velocity_m_s": 0.0009340944866531812,
+            "maximum_current_a": 0.38474728314206447,
+            "maximum_on_estimate_a": 1.0975234677253451,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 104.95555891061612,
+            "mean_pitch_squared": 0.00023728574390531113,
+            "tail_mean_pitch_squared": 6.558801849445738e-08,
+            "mean_position_squared": 0.00011941490370822677,
+            "tail_mean_position_squared": 1.8734784410853007e-07,
+            "mean_velocity_squared": 0.00045261177184451046,
+            "tail_mean_velocity_squared": 8.19967743467568e-07,
+            "mean_rate_squared": 0.030093878761204288,
+            "tail_mean_rate_squared": 1.5270890195439519e-06,
+            "mean_current_squared": 0.0007444073982603533,
+            "settling_time_s": 1.52,
+            "cost": 0.05161351250584603,
+            "largest_controller_sample_gap_s": 0.010000000000000231,
+            "largest_motor_sample_gap_s": 0.021000000000000796,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          },
+          {
+            "profile": "candidate",
+            "scenario": "nominal_minus10deg",
+            "folder": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-differential_evolution/gazebo-validation/candidate/nominal_minus10deg",
+            "returncode": 0,
+            "duration_s": 12.0,
+            "fell": false,
+            "maximum_pitch_deg": 11.350612008337295,
+            "tail_max_pitch_deg": 0.02238974251092699,
+            "tail_max_rate_deg_s": 0.17624837102452434,
+            "final_position_m": -0.0002832049687495175,
+            "final_velocity_m_s": -0.0008923522120905268,
+            "maximum_current_a": 0.43235621958805703,
+            "maximum_on_estimate_a": 1.1399052172853472,
+            "minimum_bus_v": 6.0,
+            "maximum_steady_junction_estimate_c": 118.3813837948556,
+            "mean_pitch_squared": 0.0005434056630002465,
+            "tail_mean_pitch_squared": 2.722824803026664e-08,
+            "mean_position_squared": 0.00040582442664625294,
+            "tail_mean_position_squared": 1.1378171451102555e-07,
+            "mean_velocity_squared": 0.0010972088263426312,
+            "tail_mean_velocity_squared": 8.717371140908969e-07,
+            "mean_rate_squared": 0.033148071231923266,
+            "tail_mean_rate_squared": 1.2917360335892417e-06,
+            "mean_current_squared": 0.001137054007131197,
+            "settling_time_s": 2.355,
+            "cost": 0.0979270720371962,
+            "largest_controller_sample_gap_s": 0.005000000000000782,
+            "largest_motor_sample_gap_s": 0.02400000000000002,
+            "response_passed": true,
+            "electrical_prediction_passed": true
+          }
+        ],
+        "gazebo_response_cases_passed": 4,
+        "gazebo_electrical_cases_passed": 4,
+        "movement_completion_sim_s": 37.285,
+        "leg_distances_m": [
+          0.4978198618440345,
+          0.49831399901663626
+        ],
+        "turn_errors_deg": [
+          0.3508901850418839
+        ]
+      }
+    },
+    "selected_method": "differential_evolution",
+    "promotion": {
+      "status": "applied",
+      "active_config_modified": true,
+      "active_config": "/mnt/d/Work/Portofolio/self-balancing-robot/ros2_ws/src/balancing_robot_sim/config/balance.yaml",
+      "previous_sha256": "c288b1144941fd0aef7212391d3a96aba23bdb6af638c13d50bbd4bb6673e520",
+      "active_sha256": "ac4acc6fe44dfb4af9714b0ffa6e3d52e62438e0dc662c1636d3eb8d8c96055b",
+      "candidate_sha256": "b81f9eab25eeb3d21360658223b49d5e845b0441c7fd3cc6afe7b1bbe8b6ec5e",
+      "gains": {
+        "kp": 0.3626432845097475,
+        "kd": 0.020857769171907126,
+        "position_gain": 0.30785580655259687,
+        "velocity_gain": 0.4406545392458052
+      },
+      "backup": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/optimizer-comparison-256-20261022/finalist-differential_evolution/previous-active.yaml",
+      "gazebo_balance_passed": true,
+      "hardware_validated": false
+    },
+    "selection_rule": "Lowest feasible training score, passing independent checks, no worse than active reference. Holdout/Gazebo scores are not ranking criteria.",
+    "active_config_sha256": "ac4acc6fe44dfb4af9714b0ffa6e3d52e62438e0dc662c1636d3eb8d8c96055b",
+    "check_shuttle": true,
+    "finalizer_sha256": "65b5e665625e7eec4a4bf2feed794c5743c0ab89317a7606aec1c085eb23579d",
+    "hardware_validated": false
+  },
+  "source_sha256": {
+    "gpu/compare_optimizers.py": "d2ccfc447333601c3c806650bcd4d921a3d656480d2054b3f4b5c44a6436b3ef",
+    "gpu/search_comparison.py": "aa493c726dd61a579dc50f66fa9c7c032bfd413fd58f525453dafff6eac2d8f5",
+    "gpu/bayes_search.py": "1d325e228d4a7a84b18a4168d0eab60191f750366966979d4daff81c7046a047",
+    "gpu/optimization_core.py": "27eb5f10febcf160eecd827542179a5f4ab377109a3a2f2ad048c7a62848b1dc",
+    "gpu/shared_sim.py": "d2450ebe6cf88a28d3b91e03b9e789807b8d2a6de85c27f4132de8eccee70024",
+    "gpu/parallel_sim.py": "4c15b62311406e42d4445f7f3a5c5c8eaf2e4e95f09184b70dafe8366a5a9f2e",
+    "gpu/robot_model.py": "16ab74e5e353f2357ef2e052cf3d5d57fb8e8952f542661051bb8b52ce6ba33a",
+    "gpu/requirements.txt": "6016e5ebdc80b8c4767da767def656017eab3405cb022b212f60a1cf85aae1d0",
+    "compare_optimizers.sh": "f0c36a36a45158b786dcd608aa7dadaf186ffb0d8f8fd792bf75a9b911f346d6",
+    "analysis/apply_optimized_gains.py": "726c03fb7b1708446a9fa06a66105d4996f5c957862d489b3f6bcad80804865b",
+    "analysis/finalize_optimizer_comparison.py": "65b5e665625e7eec4a4bf2feed794c5743c0ab89317a7606aec1c085eb23579d",
+    "cpp/build/librobot_core.so": "abbaa723402ffcf1e9e73b3e3a4f000cdb82ec98c2d718f7d45c4740cd110b89",
+    "ros2_ws/src/balancing_robot_sim/config/robot_geometry.json": "606f4fa123634a53a1053b1682d624e18be4dc7ef503e9b4d6247860a133017c",
+    "gpu/robot.xml": "a4855d802c63232aa906637060b30270e1150f3101fdeed8d9f61874c4bd2248",
+    "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "c288b1144941fd0aef7212391d3a96aba23bdb6af638c13d50bbd4bb6673e520",
+    "ros2_ws/src/balancing_robot_sim/scripts/shared_core.py": "a4b6df7589668bcf03209e572ae753b304ba5c7933f73cce5d41b63fafe528b3",
+    "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "dddc2f1ec959b9dee52d4b0f1d3f6019b00856d78a0531c28414208372c065e9",
+    "cpp/src/behaviour.cpp": "1e21babfeac6bfbd815c1db5bc319fbeac54e3ec0160a9a99eba58b9d750de6b",
+    "cpp/src/controller.cpp": "2d9665aaeaaf2f8789f5a143c3fa1bf4be315281539a46e9def554f07cd17d05",
+    "cpp/src/estimator.cpp": "aa2d9a60a2972795565b189ff75b5597461e441e54ad2b4031a010b9e69e4d46",
+    "cpp/src/motor_command.cpp": "2c185bcb1e3c454a835bdb54f14377347247ff4da282337f5500b67b2acf0d59",
+    "cpp/src/my_routine.cpp": "4237c1b5664314994900cbf03726a45c9ca90411ac32c2e4ca5c6f27f672c4de",
+    "cpp/src/safety.cpp": "cc0b73a8989d4a03f1d0da1452967b65cb6a692df061efa23459a44df9080b02",
+    "cpp/src/RobotCore.h": "26769358a4b63889c7e4130bcd8c82c335993edfdfb513186cee12e634093a5e"
+  },
+  "versions": {
+    "mujoco": "3.16.0",
+    "mujoco-warp": "3.16.0",
+    "warp-lang": "1.18.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "active_configuration_sha256": "ac4acc6fe44dfb4af9714b0ffa6e3d52e62438e0dc662c1636d3eb8d8c96055b",
+  "hardware_validated": false
+}

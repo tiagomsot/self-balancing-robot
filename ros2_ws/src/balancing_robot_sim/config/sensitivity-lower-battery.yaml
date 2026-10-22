@@ -1,0 +1,5 @@
+# Deliberately chosen sensitivity case, not a measured battery identification.
+motor_driver:
+  ros__parameters:
+    battery_voltage_v: 5.5
+    battery_resistance_ohm: 0.5

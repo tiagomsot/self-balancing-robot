@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-22",
+  "scope": "Nominal simulator validation of the existing 24-trial shared-C++ Bayesian candidate; no new search or hardware run.",
+  "search_folder": "outputs/shared-cpp-bayes-20261022",
+  "trials": 24,
+  "gains": {
+    "kp": 1.2346470896154642,
+    "kd": 0.09620996650308372,
+    "position_gain": 0.30410389523021875,
+    "velocity_gain": 0.5799665620084852,
+    "total_torque_limit_nm": 0.04
+  },
+  "gpu_training_objective_improvement_fraction": 0.19581502803464731,
+  "gpu_training_passed": true,
+  "gpu_holdout_passed": true,
+  "gazebo_nominal_balance_passed": true,
+  "gazebo_balance_duration_s": 12,
+  "gazebo_balance_cases": [
+    {
+      "scenario": "nominal_5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.005511744451176661,
+      "final_position_m": -1.8615729726761954e-06,
+      "final_velocity_m_s": -0.00010453404734574783,
+      "maximum_current_a": 0.38294117647058823,
+      "electrical_prediction_passed": true
+    },
+    {
+      "scenario": "nominal_minus5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.005429252009051857,
+      "final_position_m": -1.693972772412178e-05,
+      "final_velocity_m_s": -0.00011570247701922682,
+      "maximum_current_a": 0.38294117647058823,
+      "electrical_prediction_passed": true
+    },
+    {
+      "scenario": "nominal_10deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.019415462185607392,
+      "final_position_m": 7.744232386330818e-07,
+      "final_velocity_m_s": -0.00012198419756684433,
+      "maximum_current_a": 0.3873947316946043,
+      "electrical_prediction_passed": true
+    },
+    {
+      "scenario": "nominal_minus10deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.005036392099823259,
+      "final_position_m": -4.6288732129862176e-05,
+      "final_velocity_m_s": -2.0069043543652723e-05,
+      "maximum_current_a": 0.38905499872194105,
+      "electrical_prediction_passed": true
+    }
+  ],
+  "gazebo_shuttle_passed": true,
+  "gazebo_shuttle_completion_sim_s": 36.645,
+  "ground_truth_leg_distances_m": [
+    0.49803031083222843,
+    0.49803370287889176
+  ],
+  "ground_truth_turn_errors_deg": [
+    0.3385903198399389
+  ],
+  "active_config_sha256": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+  "candidate_profile_sha256": "45df321f01c5ea5fcb0207a8680e25bafc712fd4b81346075c971e748afb238b",
+  "core_source_sha256": {
+    "cpp/src/behaviour.cpp": "1e21babfeac6bfbd815c1db5bc319fbeac54e3ec0160a9a99eba58b9d750de6b",
+    "cpp/src/controller.cpp": "2d9665aaeaaf2f8789f5a143c3fa1bf4be315281539a46e9def554f07cd17d05",
+    "cpp/src/estimator.cpp": "aa2d9a60a2972795565b189ff75b5597461e441e54ad2b4031a010b9e69e4d46",
+    "cpp/src/motor_command.cpp": "2c185bcb1e3c454a835bdb54f14377347247ff4da282337f5500b67b2acf0d59",
+    "cpp/src/my_routine.cpp": "4237c1b5664314994900cbf03726a45c9ca90411ac32c2e4ca5c6f27f672c4de",
+    "cpp/src/RobotCore.h": "26769358a4b63889c7e4130bcd8c82c335993edfdfb513186cee12e634093a5e",
+    "cpp/src/safety.cpp": "cc0b73a8989d4a03f1d0da1452967b65cb6a692df061efa23459a44df9080b02"
+  },
+  "active_config_modified": false,
+  "candidate_promoted": false,
+  "hardware_validated": false,
+  "limitations": [
+    "Fixed nominal actuator/geometry and ideal sensor/wheel feedback.",
+    "Balance objective does not optimize movement timing, yaw gains, or acceleration.",
+    "Nano has no encoders and cannot use the position/speed gains.",
+    "Electrical model checks do not establish hardware current/pulse/thermal compliance."
+  ]
+}

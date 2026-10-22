@@ -1,0 +1,277 @@
+{
+  "date": "2026-10-21",
+  "geometry": {
+    "body_mass_kg": 0.42,
+    "body_height_m": 0.15,
+    "body_depth_m": 0.035,
+    "body_width_m": 0.1,
+    "body_bottom_below_axle_m": 0.027,
+    "wheel_radius_m": 0.04,
+    "wheel_width_m": 0.008,
+    "wheel_center_separation_m": 0.168,
+    "wheel_mass_each_kg": 0.02,
+    "imu_above_axle_m": 0.06,
+    "gravity_m_s2": 9.81
+  },
+  "uniform_com_above_axle_m": 0.048,
+  "upright_box_ground_clearance_m": 0.013,
+  "unit_tests_passed": 53,
+  "wheel_mass_is_assumed": true,
+  "hardware_validated": false,
+  "gains_reoptimized_for_geometry": false,
+  "records": {
+    "gazebo_balance": {
+      "initial_pitch_deg": 4.999999999999999,
+      "maximum_abs_pitch_deg": 4.999999999999999,
+      "last_second_max_abs_pitch_deg": 0.0058396745659704445,
+      "last_second_max_abs_rate_deg_s": 0.1447924280742928,
+      "final_position_m": 0.0004332934192609955,
+      "final_velocity_m_s": -0.0002443164735496321,
+      "maximum_abs_commanded_total_torque_nm": 0.04,
+      "maximum_abs_delivered_total_torque_nm": 0.05703139050810114,
+      "final_time_s": 8.0,
+      "requested_duration_s": 8.0,
+      "received_samples": 1598,
+      "controller_faulted": false,
+      "maximum_observed_body_tilt_deg": 4.999999999999992,
+      "motor_mode": "motor_driver",
+      "parameters_file": "parameters.yaml",
+      "source_sha256": {
+        "controller": "6b308276cdccf0dc8bdf15fcd2359c8b45fdda7f7375b210f54c861fe0200217",
+        "motor_driver": "b587e4628c1840efe9e47f7e815d1ef0262923d266db3745a88e79401c5d1b61",
+        "motor_model": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64",
+        "robot": "c5483efb61523cc5438ef7830d167ff1917f7513e6bf2f5f74e2617885fe5446",
+        "motion_core": "562bed8cb284436cca4b768728be6278d37a70522592819602fdf8b7b00618b0",
+        "world": "ac96b1510292598917b608acfed8aaeb76569c060bad8fc61c386a022c25c473",
+        "balance_launch": "9145a61c21a330e76a1c7002b891926df8ce0cf0b6b84875bdfe76e5a22c1782",
+        "passive_launch": "18f9abd95eb47a616e1773b18a1c5d9643246b84b8e456529e558d1f814b2af2",
+        "geometry": "606f4fa123634a53a1053b1682d624e18be4dc7ef503e9b4d6247860a133017c"
+      },
+      "actuator": {
+        "maximum_average_motor_current_a": 0.5073182750796295,
+        "maximum_on_current_estimate_a": 1.0432754850427863,
+        "maximum_on_time_estimate_s": 0.0009923969587835133,
+        "minimum_bus_voltage_v": 6.0,
+        "maximum_driver_loss_w": 3.23773970895786,
+        "maximum_steady_junction_estimate_c": 142.85372540606608,
+        "steady_thermal_proxy_exceeds_rating": false,
+        "average_current_rating_exceeded": false,
+        "pulse_rating_uncertain": true,
+        "peak_current_estimate_exceeded": false,
+        "supply_out_of_range": false,
+        "pwm_saturated": false,
+        "rms_current_proxy_exceeds_continuous_rating": true
+      },
+      "checks": {
+        "completed_duration": true,
+        "no_controller_fault": true,
+        "initial_condition": true,
+        "stays_upright": true,
+        "settles_pitch": true,
+        "settles_rate": true,
+        "returns_near_start": true,
+        "slows_down": true,
+        "respects_command_limit": true
+      },
+      "passed": true,
+      "hardware_rating_compliance_established": false,
+      "scope": "Response checks only. Averaged PWM does not establish pulse-current or thermal compliance; sensor orientation and wheel feedback remain ideal."
+    },
+    "gazebo_shuttle": {
+      "passed": true,
+      "checks": {
+        "no_fault": true,
+        "completed": true,
+        "stopped_at_each_end": true,
+        "turns_before_each_next_leg": true,
+        "independent_pose_available": true,
+        "ground_truth_distances": true,
+        "ground_truth_half_turns": true,
+        "stays_upright": true,
+        "respects_wheel_request_caps": true
+      },
+      "error": null,
+      "final_status": {
+        "phase": "DONE",
+        "time_s": 36.17,
+        "legs_completed": 2,
+        "cycles_completed": 1,
+        "fault_reason": "",
+        "requested_distance_m": 0.5,
+        "legs": [
+          {
+            "index": 1,
+            "start_x_m": 0.010757000589020233,
+            "start_y_m": -3.446048471618659e-07,
+            "end_x_m": 0.5077667606900511,
+            "end_y_m": -2.7545543580252565e-05,
+            "projected_distance_m": 0.4970097601010309,
+            "heading_rad": 0.0
+          },
+          {
+            "index": 2,
+            "start_x_m": 0.5091722001795265,
+            "start_y_m": -0.0005285623335647462,
+            "end_x_m": 0.013473481621672313,
+            "end_y_m": -0.0035457452233274094,
+            "projected_distance_m": 0.49569871855785413,
+            "heading_rad": 3.141592653589793
+          }
+        ],
+        "events": [
+          {
+            "time_s": 2.685,
+            "phase": "DRIVE",
+            "x_m": 0.010757000589020233,
+            "y_m": -3.446048471618659e-07,
+            "yaw_rad": -5.486031454073773e-05,
+            "legs_completed": 0
+          },
+          {
+            "time_s": 10.83,
+            "phase": "STOP",
+            "x_m": 0.5061842009367803,
+            "y_m": -2.7459539936026254e-05,
+            "yaw_rad": -5.429307258478476e-05,
+            "legs_completed": 1
+          },
+          {
+            "time_s": 12.88,
+            "phase": "TURN",
+            "x_m": 0.5077667606900511,
+            "y_m": -2.7545543580252565e-05,
+            "yaw_rad": -5.413794599418284e-05,
+            "legs_completed": 1
+          },
+          {
+            "time_s": 25.07,
+            "phase": "TURN_SETTLE",
+            "x_m": 0.5092254986906014,
+            "y_m": -0.0005280535312286236,
+            "yaw_rad": -3.1196390410710704,
+            "legs_completed": 1
+          },
+          {
+            "time_s": 26.11,
+            "phase": "DRIVE",
+            "x_m": 0.5091722001795265,
+            "y_m": -0.0005285623335647462,
+            "yaw_rad": -3.1351369065974404,
+            "legs_completed": 1
+          },
+          {
+            "time_s": 34.07,
+            "phase": "STOP",
+            "x_m": 0.015686186524450457,
+            "y_m": -0.0035367087850547417,
+            "yaw_rad": -3.1375110103433066,
+            "legs_completed": 2
+          },
+          {
+            "time_s": 36.17,
+            "phase": "DONE",
+            "x_m": 0.013473481621672313,
+            "y_m": -0.0035457452233274094,
+            "yaw_rad": -3.1375236194162186,
+            "legs_completed": 2
+          }
+        ]
+      },
+      "ground_truth_leg_distances_m": [
+        0.49697766142955796,
+        0.49571591187450953
+      ],
+      "ground_truth_turn_errors_deg": [
+        0.3730306065450076
+      ],
+      "observed_pose_names": [
+        "balancing_robot",
+        "base_link",
+        "base_link_fixed_joint_lump__body_link_visual",
+        "base_link_fixed_joint_lump__imu_marker_visual_1",
+        "ground",
+        "ground_link",
+        "ground_visual",
+        "left_wheel",
+        "left_wheel_visual",
+        "right_wheel",
+        "right_wheel_visual",
+        "sun",
+        "sunVisual"
+      ],
+      "maximum_average_motor_current_a": 0.5051231003172431,
+      "pulse_rating_uncertain": true,
+      "hardware_rating_compliance_established": false,
+      "source_sha256": {
+        "ros2_ws/src/balancing_robot_sim/scripts/balance_controller.py": "6b308276cdccf0dc8bdf15fcd2359c8b45fdda7f7375b210f54c861fe0200217",
+        "ros2_ws/src/balancing_robot_sim/scripts/shuttle_demo.py": "961b167c916bf22a07961d6ce88ddc869c9e269c48d41993d3ec740e79ea710e",
+        "ros2_ws/src/balancing_robot_sim/scripts/motion_core.py": "562bed8cb284436cca4b768728be6278d37a70522592819602fdf8b7b00618b0",
+        "ros2_ws/src/balancing_robot_sim/scripts/motor_driver.py": "b587e4628c1840efe9e47f7e815d1ef0262923d266db3745a88e79401c5d1b61",
+        "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64",
+        "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+        "ros2_ws/src/balancing_robot_sim/config/robot_geometry.json": "606f4fa123634a53a1053b1682d624e18be4dc7ef503e9b4d6247860a133017c",
+        "ros2_ws/src/balancing_robot_sim/launch/passive.launch.py": "18f9abd95eb47a616e1773b18a1c5d9643246b84b8e456529e558d1f814b2af2",
+        "ros2_ws/src/balancing_robot_sim/launch/balance.launch.py": "9145a61c21a330e76a1c7002b891926df8ce0cf0b6b84875bdfe76e5a22c1782",
+        "ros2_ws/src/balancing_robot_sim/urdf/robot.urdf.xacro": "c5483efb61523cc5438ef7830d167ff1917f7513e6bf2f5f74e2617885fe5446",
+        "ros2_ws/src/balancing_robot_sim/worlds/balance.sdf": "ac96b1510292598917b608acfed8aaeb76569c060bad8fc61c386a022c25c473",
+        "analysis/check_shuttle.py": "f6d5440ffd2ff337a83a7e8d9530410d7f0406ed97419f02193e981677753b4d",
+        "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/balance_controller": "6b308276cdccf0dc8bdf15fcd2359c8b45fdda7f7375b210f54c861fe0200217",
+        "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/shuttle_demo": "961b167c916bf22a07961d6ce88ddc869c9e269c48d41993d3ec740e79ea710e",
+        "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/motion_core.py": "562bed8cb284436cca4b768728be6278d37a70522592819602fdf8b7b00618b0",
+        "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/motor_driver": "b587e4628c1840efe9e47f7e815d1ef0262923d266db3745a88e79401c5d1b61",
+        "ros2_ws/install/balancing_robot_sim/lib/balancing_robot_sim/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+      }
+    },
+    "gpu_batch": {
+      "device": "cuda:0",
+      "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "physics_on_gpu": true,
+      "worlds": 256,
+      "duration_s": 5.0,
+      "seed": 20261021,
+      "warmup_and_compile_s": 1.051888740999857,
+      "batch_wall_s": 1.0904148709996662,
+      "physics_steps_per_s": 1173865.1352274083,
+      "aggregate_realtime_factor": 1173.8651352274082,
+      "cpu_short_check_wall_s": 0.012679948998993495,
+      "cpu_gpu_parity_passed": true,
+      "cpu_reference_worlds": 4,
+      "cpu_reference_wall_s": 0.35194270300053176,
+      "cpu_reference_aggregate_realtime_factor": 56.827431935617604,
+      "measured_throughput_ratio": 20.656663432500938,
+      "cpu_reference_final_qpos_max_error": 0.0005780612580084665,
+      "cpu_reference_final_qvel_max_error": 0.007043827753447696,
+      "cpu_gpu_max_qpos_error": 1.4442851997698014e-07,
+      "cpu_gpu_max_qvel_error": 1.6870658245959902e-06,
+      "motor_controller_parity_passed": true,
+      "motor_controller_max_torque_error_nm": 5.815664720631997e-09,
+      "no_buffer_overflow": true,
+      "all_states_finite": true,
+      "response_pass_count": 256,
+      "existing_preset_response_pass": [
+        true,
+        true
+      ],
+      "best_world": 73,
+      "source_sha256": {
+        "gpu/parallel_sim.py": "df73de257f6e2ec7c9e91ab4c18188b13915086bac819a71a6f4002190913d93",
+        "gpu/robot.xml": "a4855d802c63232aa906637060b30270e1150f3101fdeed8d9f61874c4bd2248",
+        "gpu/robot_model.py": "16ab74e5e353f2357ef2e052cf3d5d57fb8e8952f542661051bb8b52ce6ba33a",
+        "ros2_ws/src/balancing_robot_sim/config/robot_geometry.json": "606f4fa123634a53a1053b1682d624e18be4dc7ef503e9b4d6247860a133017c",
+        "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+        "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+      },
+      "versions": {
+        "mujoco": "3.16.0",
+        "mujoco-warp": "3.16.0",
+        "warp-lang": "1.18.0",
+        "numpy": "2.5.4"
+      },
+      "scope": "Nominal fixed-bus balancing only; randomized gains are individual cases, not robustly optimized presets.",
+      "gazebocomparison_established": false,
+      "hardware_validated": false,
+      "pulse_current_compliance_established": false,
+      "passed": true
+    }
+  }
+}

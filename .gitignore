@@ -1,0 +1,32 @@
+# ROS 2 / colcon outputs
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv-gpu/
+.pytest_cache/
+
+# Local editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Generated recordings; publish selected results deliberately
+*.db3
+*.mcap
+
+# Reproducible experiment outputs; selected figures can be copied into docs later
+outputs/
+cpp/targets/nano/RobotFirmware/GeneratedConfig.h
+cpp/targets/nano/RobotFirmware/GeneratedConfig.json
+ros2_ws/src/balancing_robot_sim/config/.balance-optimization.lock

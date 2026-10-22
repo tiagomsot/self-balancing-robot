@@ -1,0 +1,31 @@
+{
+  "status": "applied",
+  "active_config_modified": true,
+  "active_config": "/mnt/d/Work/Portofolio/self-balancing-robot/ros2_ws/src/balancing_robot_sim/config/balance.yaml",
+  "previous_sha256": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+  "active_sha256": "601abe4d73037b3fd8acb6723fad2386db5709922944b4ed5f2751bcbae5b200",
+  "candidate_sha256": "4219ce3c4dd0ed41ec5f63707c2600a2d0133deafccd80d5e200630d7b50733e",
+  "gains": {
+    "kp": 0.5223648145794868,
+    "kd": 0.024193445816636086,
+    "position_gain": 0.46701844567433,
+    "velocity_gain": 0.41131974952295425
+  },
+  "backup": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/gpu-optimization-20261022-132737-9729/previous-active.yaml",
+  "gazebo_balance_passed": true,
+  "hardware_validated": false,
+  "date": "2026-10-22",
+  "method": "Gaussian-process Bayesian optimization with expected improvement",
+  "workflow": "Default optimization: GPU search and holdout, four nominal Gazebo recovery checks, automatic four-gain update with backup.",
+  "user_preference": "After optimization, use the new validated gains in the normal simulation menu without a separate profile argument.",
+  "previous_validation_report": "experiments/shared-cpp-bayes64-validation-20261022.json",
+  "python_tests_passed": 70,
+  "cpp_ctest_passed": true,
+  "integration_check": {
+    "folder": "outputs/auto-update-smoke-20261022",
+    "trials": 16,
+    "purpose": "End-to-end launcher check; initial sampling only, no Bayesian proposals in this short run.",
+    "status": "already_active",
+    "active_gains_unchanged": true
+  }
+}

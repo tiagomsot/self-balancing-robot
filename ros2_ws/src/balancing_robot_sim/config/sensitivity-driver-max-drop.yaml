@@ -1,0 +1,6 @@
+# Combined maximum source/sink drops at 0.6 A: 1.8 + 1.8 V.
+# Interpolation away from that current remains a surrogate assumption.
+motor_driver:
+  ros__parameters:
+    driver_drop_at_rating_v: 3.6
+    driver_drop_intercept_v: 2.6

@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-22",
+  "trials": 64,
+  "search_elapsed_s": 28.966978564,
+  "feasible_trials": 59,
+  "selected_trial": 49,
+  "gain_order": [
+    "kp",
+    "kd",
+    "position_gain",
+    "velocity_gain",
+    "total_torque_limit_nm"
+  ],
+  "selected_gains": [
+    0.5223648145794868,
+    0.024193445816636086,
+    0.46701844567433,
+    0.41131974952295425,
+    0.04
+  ],
+  "training_objective_current": 0.09015564434230328,
+  "training_objective_candidate": 0.06697469297796488,
+  "training_improvement_fraction": 0.2571214651444881,
+  "heldout_objective_current": 0.051546255592256784,
+  "heldout_objective_candidate": 0.04175637088095148,
+  "heldout_passed": true,
+  "gazebo_runs": [
+    {
+      "scenario": "nominal_5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.029834036940900643,
+      "final_position_m": -0.00014331213817079136,
+      "final_velocity_m_s": 0.0006407568368517761
+    },
+    {
+      "scenario": "nominal_minus5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.034262059879970316,
+      "final_position_m": 5.594654596514537E-05,
+      "final_velocity_m_s": -0.0005143940411655173
+    },
+    {
+      "scenario": "nominal_10deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.0360239742185877,
+      "final_position_m": 0.0001525851775774012,
+      "final_velocity_m_s": -0.0004828436553915874
+    },
+    {
+      "scenario": "nominal_minus10deg",
+      "response_passed": false,
+      "tail_max_pitch_deg": 34.755356565503995,
+      "final_position_m": -0.09037253934344129,
+      "final_velocity_m_s": -0.3358458420808263
+    }
+  ],
+  "gazebo_validation_passed": false,
+  "shuttle_passed": true,
+  "shuttle_leg_distances_m": [
+    0.49683683557839364,
+    0.4965172739319211
+  ],
+  "shuttle_turn_errors_deg": [
+    0.34071605119867193
+  ],
+  "source_sha256": {
+    "gpu/bayes_search.py": "35ac5f2be3886a55c55c25eb95ec0dd5232c51f35a66f91e520739843c08f44e",
+    "gpu/optimization_core.py": "27eb5f10febcf160eecd827542179a5f4ab377109a3a2f2ad048c7a62848b1dc",
+    "gpu/parallel_sim.py": "f3569a7aa912607c56c8a1303423b5e482422620059e3c18fe878f1b536084ae",
+    "gpu/robot_model.py": "16ab74e5e353f2357ef2e052cf3d5d57fb8e8952f542661051bb8b52ce6ba33a",
+    "gpu/requirements.txt": "6016e5ebdc80b8c4767da767def656017eab3405cb022b212f60a1cf85aae1d0",
+    "optimize.sh": "5186bec14b5165c2f4bfdf9ca4349309a92688f8c7b1b16b55d47925adccffd0",
+    "gpu/robot.xml": "a4855d802c63232aa906637060b30270e1150f3101fdeed8d9f61874c4bd2248",
+    "ros2_ws/src/balancing_robot_sim/config/robot_geometry.json": "606f4fa123634a53a1053b1682d624e18be4dc7ef503e9b4d6247860a133017c",
+    "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+    "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "aec6559883ff7dcf50554dd2340551346e3a1bbd991faa5f56c291c45d58ff64"
+  },
+  "active_config_modified": false,
+  "hardware_validated": false,
+  "globally_optimal": false,
+  "decision": "Candidate rejected for promotion: failed the Gazebo -10 degree start. Existing gains remain active."
+}

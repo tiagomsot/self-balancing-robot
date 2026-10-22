@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot name="balancing_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- SI units. x forward, y left along axle, z up.
+       base_link is at the axle midpoint; uniform-body COM follows the measurements. -->
+  <xacro:property name="geometry" value="${xacro.load_yaml('$(find balancing_robot_sim)/config/robot_geometry.json')}"/>
+  <xacro:property name="body_x" value="${geometry['body_depth_m']}"/>
+  <xacro:property name="body_y" value="${geometry['body_width_m']}"/>
+  <xacro:property name="body_z" value="${geometry['body_height_m']}"/>
+  <xacro:property name="body_com" value="${body_z / 2 - geometry['body_bottom_below_axle_m']}"/>
+  <xacro:property name="body_mass" value="${geometry['body_mass_kg']}"/>
+  <xacro:property name="wheel_radius" value="${geometry['wheel_radius_m']}"/>
+  <xacro:property name="wheel_width" value="${geometry['wheel_width_m']}"/>
+  <!-- Wheel mass, track, and contact friction are provisional assumptions. -->
+  <xacro:property name="wheel_mass" value="${geometry['wheel_mass_each_kg']}"/>
+  <xacro:property name="track" value="${geometry['wheel_center_separation_m']}"/>
+  <xacro:property name="contact_friction" value="0.8"/>
+  <xacro:property name="imu_height" value="${geometry['imu_above_axle_m']}"/>
+
+  <material name="body_blue"><color rgba="0.15 0.5 0.85 1"/></material>
+  <material name="wheel_dark"><color rgba="0.12 0.12 0.12 1"/></material>
+  <material name="imu_green"><color rgba="0.15 0.8 0.3 1"/></material>
+
+  <!-- Massless root frame; body inertia belongs to its child link. -->
+  <link name="base_link"/>
+  <joint name="body_mount" type="fixed">
+    <parent link="base_link"/><child link="body_link"/>
+  </joint>
+  <link name="body_link">
+    <inertial>
+      <origin xyz="0 0 ${body_com}"/>
+      <mass value="${body_mass}"/>
+      <inertia ixx="${body_mass * (body_y**2 + body_z**2) / 12}"
+               iyy="${body_mass * (body_x**2 + body_z**2) / 12}"
+               izz="${body_mass * (body_x**2 + body_y**2) / 12}"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 ${body_com}"/>
+      <geometry><box size="${body_x} ${body_y} ${body_z}"/></geometry>
+      <material name="body_blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${body_com}"/>
+      <geometry><box size="${body_x} ${body_y} ${body_z}"/></geometry>
+    </collision>
+    <!-- Visual marker only: the body mass already includes the electronics. -->
+    <visual name="imu_marker">
+      <origin xyz="${body_x / 2 + 0.001} 0 ${imu_height}"/>
+      <geometry><box size="0.002 0.02 0.012"/></geometry>
+      <material name="imu_green"/>
+    </visual>
+  </link>
+
+  <xacro:macro name="wheel" params="side sign">
+    <link name="${side}_wheel">
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <inertia ixx="${wheel_mass * (3 * wheel_radius**2 + wheel_width**2) / 12}"
+                 iyy="${wheel_mass * wheel_radius**2 / 2}"
+                 izz="${wheel_mass * (3 * wheel_radius**2 + wheel_width**2) / 12}"
+                 ixy="0" ixz="0" iyz="0"/>
+      </inertial>
+      <visual>
+        <origin rpy="${pi / 2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        <material name="wheel_dark"/>
+      </visual>
+      <collision>
+        <origin rpy="${pi / 2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+    </link>
+    <joint name="${side}_wheel_joint" type="continuous">
+      <origin xyz="0 ${sign * track / 2} 0"/>
+      <parent link="body_link"/><child link="${side}_wheel"/>
+      <axis xyz="0 1 0"/>
+      <dynamics damping="0" friction="0"/>
+    </joint>
+    <gazebo reference="${side}_wheel">
+      <mu1>${contact_friction}</mu1><mu2>${contact_friction}</mu2>
+    </gazebo>
+  </xacro:macro>
+  <xacro:wheel side="left" sign="1"/>
+  <xacro:wheel side="right" sign="-1"/>
+
+  <link name="imu_link"/>
+  <joint name="imu_mount" type="fixed">
+    <parent link="body_link"/><child link="imu_link"/>
+    <origin xyz="0 0 ${imu_height}"/>
+  </joint>
+  <!-- Attach to the massive body; preserve the stated sensor offset. -->
+  <gazebo reference="body_link">
+    <sensor name="imu" type="imu">
+      <pose>0 0 ${imu_height} 0 0 0</pose>
+      <always_on>true</always_on>
+      <update_rate>200</update_rate>
+      <topic>/balancing_robot/imu</topic>
+      <gz_frame_id>imu_link</gz_frame_id>
+      <!-- Report orientation relative to world up, including the initial lean. -->
+      <imu>
+        <orientation_reference_frame><localization>ENU</localization></orientation_reference_frame>
+      </imu>
+    </sensor>
+  </gazebo>
+  <gazebo>
+    <!-- These apply physical joint torque; no wheel velocity servo is used. -->
+    <plugin filename="gz-sim-apply-joint-force-system"
+            name="gz::sim::systems::ApplyJointForce">
+      <joint_name>left_wheel_joint</joint_name>
+    </plugin>
+    <plugin filename="gz-sim-apply-joint-force-system"
+            name="gz::sim::systems::ApplyJointForce">
+      <joint_name>right_wheel_joint</joint_name>
+    </plugin>
+    <plugin filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+      <topic>/balancing_robot/joint_states</topic>
+      <joint_name>left_wheel_joint</joint_name>
+      <joint_name>right_wheel_joint</joint_name>
+    </plugin>
+  </gazebo>
+</robot>

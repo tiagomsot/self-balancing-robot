@@ -1,0 +1,5 @@
+# Unmeasured stress assumptions; these are NOT the owner's motor properties.
+motor_driver:
+  ros__parameters:
+    command_deadband: 0.08
+    current_time_constant_s: 0.002

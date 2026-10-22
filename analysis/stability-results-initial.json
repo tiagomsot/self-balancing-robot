@@ -1,0 +1,291 @@
+{
+  "scope": "Ideal planar no-slip torque-input mechanics, linearized near upright",
+  "body_mass_kg": 0.3,
+  "wheel_mass_each_kg_assumed": 0.02,
+  "com_above_axle_m_assumed": 0.125,
+  "body_pitch_inertia_kg_m2": 0.001625,
+  "body_inertia_about_axle_kg_m2": 0.0063124999999999995,
+  "effective_translational_mass_kg": 0.36,
+  "A": [
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      -15.925324675324674,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.0,
+      152.88311688311688,
+      0.0
+    ]
+  ],
+  "B": [
+    [
+      0.0
+    ],
+    [
+      189.03318903318902
+    ],
+    [
+      0.0
+    ],
+    [
+      -1281.3852813852814
+    ]
+  ],
+  "linearization_verified_by_numerical_differentiation": true,
+  "full_controllability_rank": 4,
+  "open_loop_poles_per_s": [
+    {
+      "real": 0.0,
+      "imag": 0.0
+    },
+    {
+      "real": 0.0,
+      "imag": 0.0
+    },
+    {
+      "real": 12.36459125418697,
+      "imag": 0.0
+    },
+    {
+      "real": -12.36459125418697,
+      "imag": 0.0
+    }
+  ],
+  "unstable_mode_efolding_time_s": 0.08087610657257871,
+  "pitch_equation": {
+    "angle_coefficient_per_s2": 152.88311688311688,
+    "negative_total_torque_coefficient": 1281.3852813852814
+  },
+  "ideal_pitch_feedback": {
+    "kp_Nm_per_rad": 0.2192027027027027,
+    "kd_Nm_s_per_rad": 0.012486486486486486,
+    "pitch_poles_per_s": [
+      {
+        "real": -7.999999999999998,
+        "imag": 7.999999999999999
+      },
+      {
+        "real": -7.999999999999998,
+        "imag": -7.999999999999999
+      }
+    ],
+    "full_model_poles_per_s": [
+      {
+        "real": 0.0,
+        "imag": 0.0
+      },
+      {
+        "real": 0.0,
+        "imag": 0.0
+      },
+      {
+        "real": -7.999999999999998,
+        "imag": 7.999999999999999
+      },
+      {
+        "real": -7.999999999999998,
+        "imag": -7.999999999999999
+      }
+    ]
+  },
+  "hypothetical_full_state_feedback": {
+    "law": "tau = -K @ [x, x_dot, theta, theta_dot]",
+    "K": [
+      [
+        -0.09042201834862407,
+        -0.08665443425076415,
+        -0.29965685180593443,
+        -0.02917199424194834
+      ]
+    ],
+    "closed_loop_poles_per_s": [
+      {
+        "real": -8.000000000000046,
+        "imag": 7.999999999999971
+      },
+      {
+        "real": -8.000000000000046,
+        "imag": -7.999999999999971
+      },
+      {
+        "real": -2.999999999999869,
+        "imag": 0.0
+      },
+      {
+        "real": -2.00000000000009,
+        "imag": 0.0
+      }
+    ]
+  },
+  "sampled_pitch_delay_sensitivity_at_200Hz": [
+    {
+      "delay_ms": 0.0,
+      "max_pole_magnitude": 0.9609688791077103,
+      "pitch_stable": true
+    },
+    {
+      "delay_ms": 5.0,
+      "max_pole_magnitude": 0.9615228368282589,
+      "pitch_stable": true
+    },
+    {
+      "delay_ms": 10.0,
+      "max_pole_magnitude": 0.962491670044119,
+      "pitch_stable": true
+    },
+    {
+      "delay_ms": 20.0,
+      "max_pole_magnitude": 0.9669381068081618,
+      "pitch_stable": true
+    },
+    {
+      "delay_ms": 40.0,
+      "max_pole_magnitude": 0.9928660888303803,
+      "pitch_stable": true
+    },
+    {
+      "delay_ms": 60.0,
+      "max_pole_magnitude": 1.0154029120880697,
+      "pitch_stable": false
+    }
+  ],
+  "wheel_mass_sensitivity_with_fixed_pitch_gains": [
+    {
+      "wheel_mass_each_kg": 0.005,
+      "pitch_poles": [
+        {
+          "real": -11.420812116464298,
+          "imag": 8.456402037253936
+        },
+        {
+          "real": -11.420812116464298,
+          "imag": -8.456402037253936
+        }
+      ],
+      "pitch_stable": true
+    },
+    {
+      "wheel_mass_each_kg": 0.01,
+      "pitch_poles": [
+        {
+          "real": -9.961518305008614,
+          "imag": 8.436180492666212
+        },
+        {
+          "real": -9.961518305008614,
+          "imag": -8.436180492666212
+        }
+      ],
+      "pitch_stable": true
+    },
+    {
+      "wheel_mass_each_kg": 0.02,
+      "pitch_poles": [
+        {
+          "real": -8.000000000000004,
+          "imag": 7.999999999999999
+        },
+        {
+          "real": -8.000000000000004,
+          "imag": -7.999999999999999
+        }
+      ],
+      "pitch_stable": true
+    },
+    {
+      "wheel_mass_each_kg": 0.05,
+      "pitch_poles": [
+        {
+          "real": -5.223105458399576,
+          "imag": 6.379080833875358
+        },
+        {
+          "real": -5.223105458399576,
+          "imag": -6.379080833875358
+        }
+      ],
+      "pitch_stable": true
+    }
+  ],
+  "effective_torque_constant_Nm_per_A_assumed": 0.052302133333333334,
+  "total_torque_at_0_6A_each_Nm_illustrative": 0.06276256,
+  "initial_PD_requests": [
+    {
+      "tilt_deg": 1,
+      "initial_rate_rad_s": 0,
+      "total_torque_Nm": 0.0038258088914324352,
+      "per_motor_torque_Nm": 0.0019129044457162176,
+      "ideal_current_each_A": 0.03657411894701971
+    },
+    {
+      "tilt_deg": 2,
+      "initial_rate_rad_s": 0,
+      "total_torque_Nm": 0.0076516177828648705,
+      "per_motor_torque_Nm": 0.0038258088914324352,
+      "ideal_current_each_A": 0.07314823789403942
+    },
+    {
+      "tilt_deg": 5,
+      "initial_rate_rad_s": 0,
+      "total_torque_Nm": 0.019129044457162174,
+      "per_motor_torque_Nm": 0.009564522228581087,
+      "ideal_current_each_A": 0.1828705947350985
+    },
+    {
+      "tilt_deg": 10,
+      "initial_rate_rad_s": 0,
+      "total_torque_Nm": 0.03825808891432435,
+      "per_motor_torque_Nm": 0.019129044457162174,
+      "ideal_current_each_A": 0.365741189470197
+    }
+  ],
+  "nonlinear_ideal_pitch_response_checks": [
+    {
+      "initial_tilt_deg": 5,
+      "duration_s": 3,
+      "peak_torque_each_Nm": 0.009564522228581087,
+      "peak_gearbox_relative_speed_rpm": 27.479385919484574,
+      "peak_ideal_torque_current_each_A": 0.1828705947350985,
+      "peak_reference_6V_torque_speed_budget_fraction": 0.17818114229368387,
+      "final_tilt_deg": -9.158964435694466e-11,
+      "final_axle_displacement_m": 0.22653625340800726,
+      "final_axle_speed_m_s": 0.07273911129515613
+    },
+    {
+      "initial_tilt_deg": 10,
+      "duration_s": 3,
+      "peak_torque_each_Nm": 0.019129044457162174,
+      "peak_gearbox_relative_speed_rpm": 55.46963013549872,
+      "peak_ideal_torque_current_each_A": 0.365741189470197,
+      "peak_reference_6V_torque_speed_budget_fraction": 0.3577479383898873,
+      "final_tilt_deg": -1.8994838633114233e-10,
+      "final_axle_displacement_m": 0.46071487198081595,
+      "final_axle_speed_m_s": 0.14809903329404553
+    }
+  ],
+  "limitations": [
+    "Instantaneous delivered torque; electrical/mechanical motor dynamics omitted",
+    "No speed-dependent available torque, driver voltage model, or battery sag",
+    "No backlash, friction/deadband, noise, or sensor-fusion errors",
+    "Pitch-only feedback leaves translational modes uncontrolled",
+    "Full-state feedback presumes unavailable/unconfirmed wheel state measurements",
+    "Current calculation uses reference motor data, neglects friction, and is not a driver model",
+    "Delay study uses perfect delayed pitch/rate samples and no saturation",
+    "Planar analysis excludes yaw, lateral tipping, and loss of contact"
+  ]
+}

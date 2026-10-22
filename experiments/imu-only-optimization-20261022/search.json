@@ -1,0 +1,994 @@
+{
+  "method": "Gaussian-process Bayesian optimization; Matern-5/2, analytic EI, diverse candidate batches",
+  "seed": 20261022,
+  "trials": 512,
+  "batch_size": 8,
+  "seconds": 8,
+  "bounds": {
+    "kp": [
+      0.3,
+      4.0
+    ],
+    "kd": [
+      0.02,
+      0.8
+    ],
+    "ki": [
+      0.0,
+      2.0
+    ]
+  },
+  "fixed_torque_cap_nm": 0.04,
+  "training_cases": [
+    {
+      "name": "lean_+5",
+      "tilt_deg": 5,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "lean_-5",
+      "tilt_deg": -5,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "lean_+10",
+      "tilt_deg": 10,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "lean_-10",
+      "tilt_deg": -10,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "moving_+0.08",
+      "tilt_deg": 0,
+      "speed_m_s": 0.08,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "moving_-0.08",
+      "tilt_deg": 0,
+      "speed_m_s": -0.08,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "rotating_+10",
+      "tilt_deg": 0,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 10
+    },
+    {
+      "name": "rotating_-10",
+      "tilt_deg": 0,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": -10
+    }
+  ],
+  "holdout_cases": [
+    {
+      "name": "lean_+7",
+      "tilt_deg": 7,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "lean_-7",
+      "tilt_deg": -7,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "moving_+0.12",
+      "tilt_deg": 0,
+      "speed_m_s": 0.12,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "moving_-0.12",
+      "tilt_deg": 0,
+      "speed_m_s": -0.12,
+      "pitch_rate_deg_s": 0
+    },
+    {
+      "name": "rotating_+15",
+      "tilt_deg": 0,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": 15
+    },
+    {
+      "name": "rotating_-15",
+      "tilt_deg": 0,
+      "speed_m_s": 0,
+      "pitch_rate_deg_s": -15
+    }
+  ],
+  "objective": "mean case cost + 0.75*worst case cost; see optimization_core.score_worlds",
+  "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "surrogate_device": "CPU",
+  "controller": "shared C++ on CPU",
+  "physics_device": "cuda:0",
+  "source_sha256": {
+    "gpu/bayes_search.py": "851625a2687a7d26f98c894c9421e2e1f978a632ea3fbfe31ee3bafabdac11fe",
+    "gpu/optimization_core.py": "7af6092a8370a34bcb5c65d1b3fbff4a4f7a7a17791793d256ecf1a5062735c9",
+    "gpu/parallel_sim.py": "5c7115eb517ee45e3e1d0eef15086f009ba5bd9715b8f51f57436344c88efc83",
+    "gpu/robot_model.py": "16ab74e5e353f2357ef2e052cf3d5d57fb8e8952f542661051bb8b52ce6ba33a",
+    "gpu/requirements.txt": "6016e5ebdc80b8c4767da767def656017eab3405cb022b212f60a1cf85aae1d0",
+    "optimize.sh": "d545247cea31ac7036c82122bc04b30f3b84dfa3441d2e9316fd00db0bc96bc3",
+    "gpu/shared_sim.py": "fdd724c4fce59497e882b7af2ebd57125c65ea1b762e3ea46d710534e235f44e",
+    "cpp/build/librobot_core.so": "5f44c888dbabd4dbf08a2eda822651f951d5ee3a5873e2ed21664a30ef672829",
+    "analysis/apply_optimized_gains.py": "07faee0b5b3dbc32e55a6375ea8fb36c17d3b8d75c5d8b0ccb5f3f1ce129dd52",
+    "ros2_ws/src/balancing_robot_sim/scripts/shared_core.py": "eadcb0b1a5062c6152e8174cc7857e00fe721f57cda91245862c96aa1ca4bf69",
+    "gpu/robot.xml": "764ecea8f368579858492f385f7d4c4b9c1242bd7c5b854467ef72704759979b",
+    "ros2_ws/src/balancing_robot_sim/config/robot_geometry.json": "606f4fa123634a53a1053b1682d624e18be4dc7ef503e9b4d6247860a133017c",
+    "ros2_ws/src/balancing_robot_sim/config/balance.yaml": "35d82da33e7bce79a21a2753ecd90c1bb9be9d1afddffcefa7504bb7412e5e21",
+    "ros2_ws/src/balancing_robot_sim/scripts/motor_model.py": "dddc2f1ec959b9dee52d4b0f1d3f6019b00856d78a0531c28414208372c065e9",
+    "cpp/src/behaviour.cpp": "1e21babfeac6bfbd815c1db5bc319fbeac54e3ec0160a9a99eba58b9d750de6b",
+    "cpp/src/controller.cpp": "04205233d424bd1cbafb9f703a6f2cb80d8260291a8c52661ae923b15fcbbfff",
+    "cpp/src/estimator.cpp": "aa94e6783a588a3239e220b6cea3685743bc06ad71934fc708b66f81deb023f2",
+    "cpp/src/motor_command.cpp": "2c185bcb1e3c454a835bdb54f14377347247ff4da282337f5500b67b2acf0d59",
+    "cpp/src/my_routine.cpp": "4237c1b5664314994900cbf03726a45c9ca90411ac32c2e4ca5c6f27f672c4de",
+    "cpp/src/RobotCore.h": "1340a763772e027f08c437e4571c1d3dc94a2e5ce5dfff5825a7667e9c4dab91",
+    "cpp/src/safety.cpp": "cc0b73a8989d4a03f1d0da1452967b65cb6a692df061efa23459a44df9080b02",
+    "cpp/tests/core_tests.cpp": "7b6d31d47dff5e91e55d911724fc6c26f47d4301433d4d44b4e1c5b3875d5c58",
+    "cpp/targets/host/robot_c_api.cpp": "55c16fef7f8274694401f6eb61fb736f9c0fb4caaa72b0bd1c62375bde5183c4",
+    "cpp/targets/mujoco/warp_host.cpp": "44006c363b480f5393b0993433c96d755ea2f9d28436387daec0a58f00fb69eb",
+    "cpp/targets/nano/common/Mpu6050Device.h": "5217e64f80d5453ddf76386ce1f49fd188ab68ff1d5df3900bb1f7b4aa2c6824",
+    "cpp/targets/nano/common/NanoMotorDevice.h": "02cd3e2155dd230890a0850660c7186b743dc048996e6939f197548199cec508",
+    "cpp/targets/nano/RobotFirmware/BoardConfig.h": "dd93178062b23b2afe35f793a395656b1a4ea7078f3bc83d5dc60974a2b6b1f4",
+    "cpp/targets/nano/RobotFirmware/GeneratedConfig.h": "5b8d1e598f802f7119751bd9b63e532404eac199639621c402605212db7d4bd3",
+    "cpp/targets/nano/RobotFirmware/nano_io.cpp": "9f14bcdb856cac222d585c342bf732255c6160406750f4633dc091965dfb6a93",
+    "cpp/targets/nano/RobotFirmware/nano_io.h": "44427d554dda89ac1aef69b5653c8c4f6ef265bce14b51797a6f645f192a28aa"
+  },
+  "versions": {
+    "mujoco": "3.16.0",
+    "mujoco-warp": "3.16.0",
+    "warp-lang": "1.18.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "scope": "IMU-only, shared complementary filter, MPU quantization and 5 ms DLPF-delay approximation; no wheel feedback. Fixed nominal model, calibrated sensors; noise, bias and full chip frequency response remain unmeasured.",
+  "feedback_mode": "imu_only",
+  "optimized_gains": [
+    "kp",
+    "kd",
+    "ki"
+  ],
+  "hardware_validated": false,
+  "active_config_modified": false,
+  "automatic_update_requested": false,
+  "elapsed_s": 219.3204696269986,
+  "baseline": {
+    "trial": 0,
+    "stage": "initial_sobol",
+    "gains": [
+      1.5384553561057395,
+      0.02,
+      0.0,
+      0.0,
+      0.04,
+      2.0
+    ],
+    "objective": 0.06448753899894655,
+    "all_training_cases_pass": true,
+    "cases": [
+      {
+        "case": "lean_+5",
+        "cost": 0.03320886939764023,
+        "passed": true,
+        "max_body_tilt_deg": 4.9623450216521805,
+        "tail_max_pitch_deg": 0.0033998210830705634,
+        "tail_max_rate_deg_s": 0.3110398778915049,
+        "final_distance_m": 0.19599692523479462,
+        "final_speed_m_s": 0.023058801889419556,
+        "max_average_motor_current_a": 0.46539002656936646,
+        "max_on_current_estimate_a": 1.0861973762512207,
+        "faulted": false
+      },
+      {
+        "case": "lean_-5",
+        "cost": 0.0331885889172554,
+        "passed": true,
+        "max_body_tilt_deg": 4.9623450216521805,
+        "tail_max_pitch_deg": 0.0030770171047981043,
+        "tail_max_rate_deg_s": 0.2798214577533302,
+        "final_distance_m": -0.19623532891273499,
+        "final_speed_m_s": -0.022959234192967415,
+        "max_average_motor_current_a": 0.46539005637168884,
+        "max_on_current_estimate_a": 1.0861973762512207,
+        "faulted": false
+      },
+      {
+        "case": "lean_+10",
+        "cost": 0.05588163062930107,
+        "passed": true,
+        "max_body_tilt_deg": 9.962354267708749,
+        "tail_max_pitch_deg": 0.0031814939028231744,
+        "tail_max_rate_deg_s": 0.2316620073589819,
+        "final_distance_m": 0.9678574800491333,
+        "final_speed_m_s": 0.12298621237277985,
+        "max_average_motor_current_a": 0.49798840284347534,
+        "max_on_current_estimate_a": 1.1766414642333984,
+        "faulted": false
+      },
+      {
+        "case": "lean_-10",
+        "cost": 0.05588040500879288,
+        "passed": true,
+        "max_body_tilt_deg": 9.962354267708749,
+        "tail_max_pitch_deg": 0.003236999611871108,
+        "tail_max_rate_deg_s": 0.23951731187387834,
+        "final_distance_m": -0.9679073095321655,
+        "final_speed_m_s": -0.1228780597448349,
+        "max_average_motor_current_a": 0.49798840284347534,
+        "max_on_current_estimate_a": 1.1766414642333984,
+        "faulted": false
+      },
+      {
+        "case": "moving_+0.08",
+        "cost": 0.0003054912085644901,
+        "passed": true,
+        "max_body_tilt_deg": 0.10467831862106505,
+        "tail_max_pitch_deg": 0.005679273530030841,
+        "tail_max_rate_deg_s": 0.2848136590259484,
+        "final_distance_m": 0.7143255472183228,
+        "final_speed_m_s": 0.09067308902740479,
+        "max_average_motor_current_a": 0.027241837233304977,
+        "max_on_current_estimate_a": 0.7137653231620789,
+        "faulted": false
+      },
+      {
+        "case": "moving_-0.08",
+        "cost": 0.0003196102334186435,
+        "passed": true,
+        "max_body_tilt_deg": 0.10467831862106505,
+        "tail_max_pitch_deg": 0.0046369822437412654,
+        "tail_max_rate_deg_s": 0.2870004668186897,
+        "final_distance_m": -0.7146114110946655,
+        "final_speed_m_s": -0.09115629643201828,
+        "max_average_motor_current_a": 0.027241837233304977,
+        "max_on_current_estimate_a": 0.7137653231620789,
+        "faulted": false
+      },
+      {
+        "case": "rotating_+10",
+        "cost": 0.0009067574865184724,
+        "passed": true,
+        "max_body_tilt_deg": 0.14536997101420937,
+        "tail_max_pitch_deg": 0.003545090377163108,
+        "tail_max_rate_deg_s": 0.3048622919523457,
+        "final_distance_m": 0.08556323498487473,
+        "final_speed_m_s": 0.010888169519603252,
+        "max_average_motor_current_a": 0.06850600987672806,
+        "max_on_current_estimate_a": 0.8221878409385681,
+        "faulted": false
+      },
+      {
+        "case": "rotating_-10",
+        "cost": 0.0009191753342747688,
+        "passed": true,
+        "max_body_tilt_deg": 0.14536997101420937,
+        "tail_max_pitch_deg": 0.0034883644554869623,
+        "tail_max_rate_deg_s": 0.3203835766760823,
+        "final_distance_m": -0.08508560061454773,
+        "final_speed_m_s": -0.010695318691432476,
+        "max_average_motor_current_a": 0.06850600242614746,
+        "max_on_current_estimate_a": 0.8221878409385681,
+        "faulted": false
+      }
+    ]
+  },
+  "selected": {
+    "trial": 231,
+    "stage": "bayesian_ei",
+    "gains": [
+      1.019130405542319,
+      0.02,
+      0.0,
+      0.0,
+      0.04,
+      1.978432718999299
+    ],
+    "objective": 0.0477284995795344,
+    "all_training_cases_pass": true,
+    "cases": [
+      {
+        "case": "lean_+5",
+        "cost": 0.02347145602107048,
+        "passed": true,
+        "max_body_tilt_deg": 4.9623450216521805,
+        "tail_max_pitch_deg": 0.003977123187539554,
+        "tail_max_rate_deg_s": 0.29388180236619815,
+        "final_distance_m": 0.17379441857337952,
+        "final_speed_m_s": 0.020026393234729767,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.0406473875045776,
+        "faulted": false
+      },
+      {
+        "case": "lean_-5",
+        "cost": 0.02347189374268055,
+        "passed": true,
+        "max_body_tilt_deg": 4.9623450216521805,
+        "tail_max_pitch_deg": 0.003855539650464712,
+        "tail_max_rate_deg_s": 0.2939346029301335,
+        "final_distance_m": -0.17359580099582672,
+        "final_speed_m_s": -0.019897283986210823,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.040647268295288,
+        "faulted": false
+      },
+      {
+        "case": "lean_+10",
+        "cost": 0.04165150970220566,
+        "passed": true,
+        "max_body_tilt_deg": 9.962354267708749,
+        "tail_max_pitch_deg": 0.0024979795219651755,
+        "tail_max_rate_deg_s": 0.1657521759722398,
+        "final_distance_m": 0.9153072834014893,
+        "final_speed_m_s": 0.11524583399295807,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.134346604347229,
+        "faulted": false
+      },
+      {
+        "case": "lean_-10",
+        "cost": 0.04165025055408478,
+        "passed": true,
+        "max_body_tilt_deg": 9.962354267708749,
+        "tail_max_pitch_deg": 0.0025496092737494255,
+        "tail_max_rate_deg_s": 0.17411464871343615,
+        "final_distance_m": -0.9153403043746948,
+        "final_speed_m_s": -0.11513009667396545,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.134346604347229,
+        "faulted": false
+      },
+      {
+        "case": "moving_+0.08",
+        "cost": 0.0002624971675686538,
+        "passed": true,
+        "max_body_tilt_deg": 0.13417038176609253,
+        "tail_max_pitch_deg": 0.003839386736660361,
+        "tail_max_rate_deg_s": 0.2749876581725182,
+        "final_distance_m": 0.7204871773719788,
+        "final_speed_m_s": 0.09153852611780167,
+        "max_average_motor_current_a": 0.024537691846489906,
+        "max_on_current_estimate_a": 0.7137653231620789,
+        "faulted": false
+      },
+      {
+        "case": "moving_-0.08",
+        "cost": 0.00021157856099307537,
+        "passed": true,
+        "max_body_tilt_deg": 0.13417038176609253,
+        "tail_max_pitch_deg": 0.0032425560191191864,
+        "tail_max_rate_deg_s": 0.1756160230105828,
+        "final_distance_m": -0.7193917036056519,
+        "final_speed_m_s": -0.09081593155860901,
+        "max_average_motor_current_a": 0.024537691846489906,
+        "max_on_current_estimate_a": 0.7137653231620789,
+        "faulted": false
+      },
+      {
+        "case": "rotating_+10",
+        "cost": 0.0006085580098442733,
+        "passed": true,
+        "max_body_tilt_deg": 0.15450506888462376,
+        "tail_max_pitch_deg": 0.0026621348060460676,
+        "tail_max_rate_deg_s": 0.2937822310147041,
+        "final_distance_m": 0.08683593571186066,
+        "final_speed_m_s": 0.010721029713749886,
+        "max_average_motor_current_a": 0.053920406848192215,
+        "max_on_current_estimate_a": 0.8152010440826416,
+        "faulted": false
+      },
+      {
+        "case": "rotating_-10",
+        "cost": 0.000591194664593786,
+        "passed": true,
+        "max_body_tilt_deg": 0.15450506888462376,
+        "tail_max_pitch_deg": 0.0026347661079747474,
+        "tail_max_rate_deg_s": 0.26760854590881855,
+        "final_distance_m": -0.08700559288263321,
+        "final_speed_m_s": -0.010928482748568058,
+        "max_average_motor_current_a": 0.053920406848192215,
+        "max_on_current_estimate_a": 0.8152010440826416,
+        "faulted": false
+      }
+    ]
+  },
+  "feasible_trials": 349,
+  "improvement_fraction": 0.2598802757798824,
+  "current_holdout": {
+    "objective": 0.041737126370814316,
+    "passed": true,
+    "cases": [
+      {
+        "case": "lean_+7",
+        "cost": 0.03791826590895653,
+        "passed": true,
+        "max_body_tilt_deg": 6.962354184226144,
+        "tail_max_pitch_deg": 0.0023716310274798564,
+        "tail_max_rate_deg_s": 0.27557646850374085,
+        "final_distance_m": 0.6512793302536011,
+        "final_speed_m_s": 0.05402912199497223,
+        "max_average_motor_current_a": 0.4864618480205536,
+        "max_on_current_estimate_a": 1.1270925998687744,
+        "faulted": false
+      },
+      {
+        "case": "lean_-7",
+        "cost": 0.037912894040346146,
+        "passed": true,
+        "max_body_tilt_deg": 6.962354184226144,
+        "tail_max_pitch_deg": 0.002588284219408631,
+        "tail_max_rate_deg_s": 0.2729075987659848,
+        "final_distance_m": -0.6514312624931335,
+        "final_speed_m_s": -0.05424722656607628,
+        "max_average_motor_current_a": 0.4864618182182312,
+        "max_on_current_estimate_a": 1.1270925998687744,
+        "faulted": false
+      },
+      {
+        "case": "moving_+0.12",
+        "cost": 0.0004443424695637077,
+        "passed": true,
+        "max_body_tilt_deg": 0.16902046151073055,
+        "tail_max_pitch_deg": 0.008058621037096692,
+        "tail_max_rate_deg_s": 0.2801727322479099,
+        "final_distance_m": 1.6304616928100586,
+        "final_speed_m_s": 0.13733884692192078,
+        "max_average_motor_current_a": 0.04071333631873131,
+        "max_on_current_estimate_a": 0.6777806282043457,
+        "faulted": false
+      },
+      {
+        "case": "moving_-0.12",
+        "cost": 0.00039732185541652143,
+        "passed": true,
+        "max_body_tilt_deg": 0.16902046151073055,
+        "tail_max_pitch_deg": 0.008467516915165051,
+        "tail_max_rate_deg_s": 0.28307110701394894,
+        "final_distance_m": -1.631722092628479,
+        "final_speed_m_s": -0.13747788965702057,
+        "max_average_motor_current_a": 0.040713340044021606,
+        "max_on_current_estimate_a": 0.6777806878089905,
+        "faulted": false
+      },
+      {
+        "case": "rotating_+15",
+        "cost": 0.0015100518940016627,
+        "passed": true,
+        "max_body_tilt_deg": 0.22028695428634712,
+        "tail_max_pitch_deg": 0.004477402861236585,
+        "tail_max_rate_deg_s": 0.20813754185677538,
+        "final_distance_m": 0.1886436939239502,
+        "final_speed_m_s": 0.015342304483056068,
+        "max_average_motor_current_a": 0.09949219226837158,
+        "max_on_current_estimate_a": 0.8388801217079163,
+        "faulted": false
+      },
+      {
+        "case": "rotating_-15",
+        "cost": 0.0016076854662969708,
+        "passed": true,
+        "max_body_tilt_deg": 0.22028695428634712,
+        "tail_max_pitch_deg": 0.006881887081948936,
+        "tail_max_rate_deg_s": 0.3410104278044035,
+        "final_distance_m": -0.18830664455890656,
+        "final_speed_m_s": -0.01535203866660595,
+        "max_average_motor_current_a": 0.09949218481779099,
+        "max_on_current_estimate_a": 0.838880181312561,
+        "faulted": false
+      }
+    ]
+  },
+  "candidate_holdout": {
+    "objective": 0.02787372960786646,
+    "passed": true,
+    "cases": [
+      {
+        "case": "lean_+7",
+        "cost": 0.025320809334516525,
+        "passed": true,
+        "max_body_tilt_deg": 6.962354184226144,
+        "tail_max_pitch_deg": 0.0036436703840620898,
+        "tail_max_rate_deg_s": 0.19138503549386462,
+        "final_distance_m": 0.5719586610794067,
+        "final_speed_m_s": 0.046634167432785034,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.0936204195022583,
+        "faulted": false
+      },
+      {
+        "case": "lean_-7",
+        "cost": 0.025321114808321,
+        "passed": true,
+        "max_body_tilt_deg": 6.962354184226144,
+        "tail_max_pitch_deg": 0.0034207622996585306,
+        "tail_max_rate_deg_s": 0.19838874081726476,
+        "final_distance_m": -0.5719340443611145,
+        "final_speed_m_s": -0.04653340205550194,
+        "max_average_motor_current_a": 0.3829411566257477,
+        "max_on_current_estimate_a": 1.0936204195022583,
+        "faulted": false
+      },
+      {
+        "case": "moving_+0.12",
+        "cost": 0.00031081947963684797,
+        "passed": true,
+        "max_body_tilt_deg": 0.21939690860034305,
+        "tail_max_pitch_deg": 0.0021733806596917708,
+        "tail_max_rate_deg_s": 0.1652706476357539,
+        "final_distance_m": 1.6401163339614868,
+        "final_speed_m_s": 0.13745853304862976,
+        "max_average_motor_current_a": 0.035679664462804794,
+        "max_on_current_estimate_a": 0.6777806878089905,
+        "faulted": false
+      },
+      {
+        "case": "moving_-0.12",
+        "cost": 0.0003088730154559016,
+        "passed": true,
+        "max_body_tilt_deg": 0.21939690860034305,
+        "tail_max_pitch_deg": 0.00242350152842461,
+        "tail_max_rate_deg_s": 0.16029818987870528,
+        "final_distance_m": -1.6407644748687744,
+        "final_speed_m_s": -0.13767120242118835,
+        "max_average_motor_current_a": 0.03567966818809509,
+        "max_on_current_estimate_a": 0.6777806878089905,
+        "faulted": false
+      },
+      {
+        "case": "rotating_+15",
+        "cost": 0.001014751847833395,
+        "passed": true,
+        "max_body_tilt_deg": 0.23490245187247694,
+        "tail_max_pitch_deg": 0.005593346298491909,
+        "tail_max_rate_deg_s": 0.20769299259134275,
+        "final_distance_m": 0.1947598159313202,
+        "final_speed_m_s": 0.015748798847198486,
+        "max_average_motor_current_a": 0.07974137365818024,
+        "max_on_current_estimate_a": 0.8292410969734192,
+        "faulted": false
+      },
+      {
+        "case": "rotating_-15",
+        "cost": 0.0010209925239905715,
+        "passed": true,
+        "max_body_tilt_deg": 0.23490245187247694,
+        "tail_max_pitch_deg": 0.006077497654402718,
+        "tail_max_rate_deg_s": 0.20674119505833088,
+        "final_distance_m": -0.19492337107658386,
+        "final_speed_m_s": -0.015740007162094116,
+        "max_average_motor_current_a": 0.07974137365818024,
+        "max_on_current_estimate_a": 0.8292410969734192,
+        "faulted": false
+      }
+    ]
+  },
+  "surrogate_fits": [
+    {
+      "kernel": "1.02**2 * Matern(length_scale=[0.278, 0.486, 0.663], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 1.405577170496041
+    },
+    {
+      "kernel": "0.748**2 * Matern(length_scale=[3, 0.198, 0.838], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 3.0. Increasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.21392804541815252
+    },
+    {
+      "kernel": "1.02**2 * Matern(length_scale=[3, 0.03, 0.08], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 3.0. Increasing the bound and calling fit again may find a better value.",
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 3.935853613177433
+    },
+    {
+      "kernel": "1.15**2 * Matern(length_scale=[0.201, 0.22, 0.233], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 8.01056789878453
+    },
+    {
+      "kernel": "1.21**2 * Matern(length_scale=[0.375, 0.0349, 0.222], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 3.595666924115654
+    },
+    {
+      "kernel": "1.25**2 * Matern(length_scale=[0.365, 0.0363, 0.254], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 1.5661230699851543
+    },
+    {
+      "kernel": "1.32**2 * Matern(length_scale=[0.382, 0.0384, 0.274], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 1.5451812270132672
+    },
+    {
+      "kernel": "1.33**2 * Matern(length_scale=[0.375, 0.0362, 0.27], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 3.2447225974279723
+    },
+    {
+      "kernel": "1.39**2 * Matern(length_scale=[0.376, 0.0387, 0.284], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 3.175748032829162
+    },
+    {
+      "kernel": "1.4**2 * Matern(length_scale=[0.376, 0.0399, 0.249], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 1.6890529278410573
+    },
+    {
+      "kernel": "1.86**2 * Matern(length_scale=[0.322, 0.03, 1.37], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 3.4223842168659013
+    },
+    {
+      "kernel": "1.13**2 * Matern(length_scale=[0.34, 0.0391, 0.249], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 1.6084048402647566
+    },
+    {
+      "kernel": "1.52**2 * Matern(length_scale=[0.246, 0.03, 0.989], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 2.455342560984688
+    },
+    {
+      "kernel": "1.27**2 * Matern(length_scale=[0.354, 0.0352, 0.249], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 2.185092394023015
+    },
+    {
+      "kernel": "1.49**2 * Matern(length_scale=[0.224, 0.03, 0.769], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 2.266494110739244
+    },
+    {
+      "kernel": "1.45**2 * Matern(length_scale=[0.276, 0.03, 0.555], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 1.8604428022114823
+    },
+    {
+      "kernel": "1.38**2 * Matern(length_scale=[0.245, 0.03, 0.633], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 1.2081654542999871
+    },
+    {
+      "kernel": "1.25**2 * Matern(length_scale=[0.169, 0.03, 0.954], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 1.3177359160406636
+    },
+    {
+      "kernel": "1.19**2 * Matern(length_scale=[0.162, 0.03, 0.977], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 1.3679735752828213
+    },
+    {
+      "kernel": "1.07**2 * Matern(length_scale=[0.277, 0.03, 0.357], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.921161932651711
+    },
+    {
+      "kernel": "1.1**2 * Matern(length_scale=[0.289, 0.0318, 0.348], nu=2.5)",
+      "warnings": [],
+      "max_expected_improvement": 1.179373531013458
+    },
+    {
+      "kernel": "1.14**2 * Matern(length_scale=[0.278, 0.03, 0.386], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.7902202038768693
+    },
+    {
+      "kernel": "1.17**2 * Matern(length_scale=[0.288, 0.03, 0.404], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.8618468871686317
+    },
+    {
+      "kernel": "1.19**2 * Matern(length_scale=[0.27, 0.03, 0.437], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.7651711419578595
+    },
+    {
+      "kernel": "1.11**2 * Matern(length_scale=[0.266, 0.03, 0.415], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.6437147563893064
+    },
+    {
+      "kernel": "1.13**2 * Matern(length_scale=[0.275, 0.03, 0.428], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.5044188277993995
+    },
+    {
+      "kernel": "1.13**2 * Matern(length_scale=[0.284, 0.03, 0.429], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.5435273116055162
+    },
+    {
+      "kernel": "1.13**2 * Matern(length_scale=[0.293, 0.03, 0.423], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.63538603506026
+    },
+    {
+      "kernel": "1.17**2 * Matern(length_scale=[0.348, 0.03, 0.379], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.4879419169576473
+    },
+    {
+      "kernel": "1.19**2 * Matern(length_scale=[0.343, 0.03, 0.407], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.7354991605596746
+    },
+    {
+      "kernel": "1.2**2 * Matern(length_scale=[0.331, 0.03, 0.431], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.44287301323850015
+    },
+    {
+      "kernel": "1.15**2 * Matern(length_scale=[0.322, 0.03, 0.429], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.5637445930087264
+    },
+    {
+      "kernel": "1.16**2 * Matern(length_scale=[0.332, 0.03, 0.415], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.3840272979743028
+    },
+    {
+      "kernel": "1.16**2 * Matern(length_scale=[0.315, 0.03, 0.434], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.3918905057368272
+    },
+    {
+      "kernel": "1.16**2 * Matern(length_scale=[0.32, 0.03, 0.44], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.34474690138313385
+    },
+    {
+      "kernel": "1.18**2 * Matern(length_scale=[0.321, 0.03, 0.457], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.7374250584038143
+    },
+    {
+      "kernel": "1.2**2 * Matern(length_scale=[0.367, 0.03, 0.369], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.38098231860749154
+    },
+    {
+      "kernel": "1.23**2 * Matern(length_scale=[0.366, 0.03, 0.394], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.44874103354311645
+    },
+    {
+      "kernel": "1.37**2 * Matern(length_scale=[0.455, 0.03, 0.241], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.9694491513245431
+    },
+    {
+      "kernel": "1.41**2 * Matern(length_scale=[0.438, 0.03, 0.256], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.8166917614566674
+    },
+    {
+      "kernel": "1.36**2 * Matern(length_scale=[0.421, 0.03, 0.253], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.7757651601068327
+    },
+    {
+      "kernel": "1.33**2 * Matern(length_scale=[0.411, 0.03, 0.252], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.4424526280174139
+    },
+    {
+      "kernel": "1.29**2 * Matern(length_scale=[0.406, 0.03, 0.248], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.6687491665587164
+    },
+    {
+      "kernel": "1.34**2 * Matern(length_scale=[0.38, 0.03, 0.277], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.4862969216583608
+    },
+    {
+      "kernel": "1.31**2 * Matern(length_scale=[0.379, 0.03, 0.274], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.3775913778958176
+    },
+    {
+      "kernel": "1.31**2 * Matern(length_scale=[0.376, 0.03, 0.279], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.3840424573544171
+    },
+    {
+      "kernel": "1.13**2 * Matern(length_scale=[0.143, 0.03, 0.495], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 1.192448871687051
+    },
+    {
+      "kernel": "1.33**2 * Matern(length_scale=[0.375, 0.03, 0.295], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.6709111341876531
+    },
+    {
+      "kernel": "1.35**2 * Matern(length_scale=[0.377, 0.03, 0.306], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.4340833522757688
+    },
+    {
+      "kernel": "1.38**2 * Matern(length_scale=[0.376, 0.03, 0.315], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.39121903625021487
+    },
+    {
+      "kernel": "1.4**2 * Matern(length_scale=[0.377, 0.03, 0.323], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.2923007696245534
+    },
+    {
+      "kernel": "1.37**2 * Matern(length_scale=[0.377, 0.03, 0.318], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.4597874673619379
+    },
+    {
+      "kernel": "1.42**2 * Matern(length_scale=[0.381, 0.03, 0.34], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.302476223906022
+    },
+    {
+      "kernel": "1.4**2 * Matern(length_scale=[0.378, 0.03, 0.34], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.49064663084609955
+    },
+    {
+      "kernel": "1.36**2 * Matern(length_scale=[0.358, 0.03, 0.338], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.30426089000013273
+    },
+    {
+      "kernel": "1.35**2 * Matern(length_scale=[0.36, 0.03, 0.335], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.25971296222687007
+    },
+    {
+      "kernel": "1.37**2 * Matern(length_scale=[0.363, 0.03, 0.344], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.41629197834018916
+    },
+    {
+      "kernel": "1.4**2 * Matern(length_scale=[0.367, 0.03, 0.351], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.2873068257733845
+    },
+    {
+      "kernel": "1.41**2 * Matern(length_scale=[0.368, 0.03, 0.353], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.31149632103717456
+    },
+    {
+      "kernel": "1.41**2 * Matern(length_scale=[0.37, 0.03, 0.356], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.234113663452501
+    },
+    {
+      "kernel": "1.41**2 * Matern(length_scale=[0.375, 0.03, 0.352], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.23189355909551
+    },
+    {
+      "kernel": "1.42**2 * Matern(length_scale=[0.378, 0.03, 0.354], nu=2.5)",
+      "warnings": [
+        "The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value."
+      ],
+      "max_expected_improvement": 0.2388105528343578
+    }
+  ],
+  "gazebo_validation_passed": null,
+  "candidate_ready_for_gazebo": true,
+  "globally_optimal": false
+}

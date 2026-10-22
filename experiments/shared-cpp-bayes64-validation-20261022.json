@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-22",
+  "search_folder": "outputs/gpu-optimization-20261022-132737-9729",
+  "trials": 64,
+  "selected_trial": 49,
+  "training_feasible_trials": 59,
+  "controller": "shared C++ on CPU",
+  "physics_device": "cuda:0",
+  "search_elapsed_s": 26.374030834999758,
+  "gains": {
+    "kp": 0.5223648145794868,
+    "kd": 0.024193445816636086,
+    "position_gain": 0.46701844567433,
+    "velocity_gain": 0.41131974952295425,
+    "total_torque_limit_nm": 0.04
+  },
+  "gpu_current_objective": 0.09013523312751204,
+  "gpu_candidate_objective": 0.06700590311083943,
+  "gpu_training_objective_improvement_fraction": 0.25660698057941594,
+  "gpu_training_passed": true,
+  "gpu_holdout_passed": true,
+  "gpu_holdout_current_objective": 0.05160586955025792,
+  "gpu_holdout_candidate_objective": 0.04179879386598866,
+  "gazebo_nominal_balance_passed": true,
+  "gazebo_balance_duration_s": 12,
+  "gazebo_balance_cases": [
+    {
+      "scenario": "nominal_minus10deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.0321939772823758,
+      "final_position_m": -8.186228369168936e-05,
+      "final_velocity_m_s": -0.0005916718883097512,
+      "maximum_current_a": 0.39108477315640394,
+      "electrical_prediction_passed": true
+    },
+    {
+      "scenario": "nominal_5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.028677486328065015,
+      "final_position_m": -0.00028840438888804386,
+      "final_velocity_m_s": 0.00033779944779655977,
+      "maximum_current_a": 0.38294117647058823,
+      "electrical_prediction_passed": true
+    },
+    {
+      "scenario": "nominal_minus5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.03039998696325673,
+      "final_position_m": -0.00022748968761201417,
+      "final_velocity_m_s": -0.00012801401073535935,
+      "maximum_current_a": 0.38294117647058823,
+      "electrical_prediction_passed": true
+    },
+    {
+      "scenario": "nominal_10deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.029218896886411185,
+      "final_position_m": 0.00028454811436035677,
+      "final_velocity_m_s": -0.0003211523061821945,
+      "maximum_current_a": 0.4082077471952062,
+      "electrical_prediction_passed": true
+    }
+  ],
+  "gazebo_minus10_repeat": {
+    "scenario": "nominal_minus10deg",
+    "response_passed": true,
+    "tail_max_pitch_deg": 0.03231747787901889,
+    "final_position_m": -0.0003911161364822613,
+    "final_velocity_m_s": 0.00011890422490206637,
+    "maximum_current_a": 0.38867567707230477,
+    "electrical_prediction_passed": true
+  },
+  "gazebo_shuttle_passed": true,
+  "gazebo_shuttle_completion_sim_s": 32.985,
+  "ground_truth_leg_distances_m": [
+    0.49681697170219974,
+    0.49666068797705093
+  ],
+  "ground_truth_turn_errors_deg": [
+    0.36579813666319605
+  ],
+  "active_config_sha256": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+  "candidate_profile_sha256": "4219ce3c4dd0ed41ec5f63707c2600a2d0133deafccd80d5e200630d7b50733e",
+  "core_source_sha256": {
+    "cpp/src/behaviour.cpp": "1e21babfeac6bfbd815c1db5bc319fbeac54e3ec0160a9a99eba58b9d750de6b",
+    "cpp/src/controller.cpp": "2d9665aaeaaf2f8789f5a143c3fa1bf4be315281539a46e9def554f07cd17d05",
+    "cpp/src/estimator.cpp": "aa2d9a60a2972795565b189ff75b5597461e441e54ad2b4031a010b9e69e4d46",
+    "cpp/src/motor_command.cpp": "2c185bcb1e3c454a835bdb54f14377347247ff4da282337f5500b67b2acf0d59",
+    "cpp/src/my_routine.cpp": "4237c1b5664314994900cbf03726a45c9ca90411ac32c2e4ca5c6f27f672c4de",
+    "cpp/src/RobotCore.h": "26769358a4b63889c7e4130bcd8c82c335993edfdfb513186cee12e634093a5e",
+    "cpp/src/safety.cpp": "cc0b73a8989d4a03f1d0da1452967b65cb6a692df061efa23459a44df9080b02"
+  },
+  "earlier_minus10_failure": {
+    "folder": "outputs/gpu-bayes-20261022/gazebo/candidate/nominal_minus10deg",
+    "controller_sha256": "6b308276cdccf0dc8bdf15fcd2359c8b45fdda7f7375b210f54c861fe0200217",
+    "current_controller_sha256": "844546d57321430498429e1d59878c08f1bb8b7a3368246b9fbf79ad547f9407",
+    "note": "Earlier failure used a different controller revision; current passes do not identify the exact cause of the difference."
+  },
+  "active_config_modified": false,
+  "candidate_promoted": false,
+  "hardware_validated": false,
+  "limitations": [
+    "Fixed nominal actuator/geometry with ideal sensor/wheel feedback.",
+    "Score improvement is not a percentage speed improvement or proof of global optimality.",
+    "Finite simulator checks do not establish hardware robustness or electrical compliance.",
+    "The encoder-free Nano cannot use the position/speed gains."
+  ]
+}

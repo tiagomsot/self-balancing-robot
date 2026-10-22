@@ -1,0 +1,13 @@
+{
+  "body_mass_kg": 0.420,
+  "body_height_m": 0.150,
+  "body_depth_m": 0.035,
+  "body_width_m": 0.100,
+  "body_bottom_below_axle_m": 0.027,
+  "wheel_radius_m": 0.040,
+  "wheel_width_m": 0.008,
+  "wheel_center_separation_m": 0.168,
+  "wheel_mass_each_kg": 0.020,
+  "imu_above_axle_m": 0.060,
+  "gravity_m_s2": 9.81
+}

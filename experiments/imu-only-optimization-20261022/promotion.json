@@ -1,0 +1,16 @@
+{
+  "status": "applied",
+  "active_config_modified": true,
+  "active_config": "/mnt/d/Work/Portofolio/self-balancing-robot/ros2_ws/src/balancing_robot_sim/config/balance.yaml",
+  "previous_sha256": "35d82da33e7bce79a21a2753ecd90c1bb9be9d1afddffcefa7504bb7412e5e21",
+  "active_sha256": "28bdd618858ec008c82b65ca81e5443729dc2dc653e8bc9472912eee2872570b",
+  "candidate_sha256": "9ae75c941b0deef774eee1f483e33bb233db04bf1eb5352f4bcf3c602f569226",
+  "gains": {
+    "kp": 1.019130405542319,
+    "kd": 0.02,
+    "ki": 1.978432718999299
+  },
+  "backup": "/mnt/d/Work/Portofolio/self-balancing-robot/outputs/imu-robust-search-512-20261022/previous-active.yaml",
+  "gazebo_balance_passed": true,
+  "hardware_validated": false
+}

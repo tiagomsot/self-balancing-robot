@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-22",
+  "core": "Portable C++ shared by Nano, Gazebo/ROS, CPU MuJoCo and GPU-physics batches",
+  "python_tests_passed": 61,
+  "cpp_tests_passed": true,
+  "avr_compile_passed": true,
+  "avr_program_bytes": 10170,
+  "avr_static_ram_bytes": 611,
+  "avr_image": "Unconfigured balance-only firmware; excludes worst-case stack",
+  "hardware_configured": false,
+  "hardware_uploaded": false,
+  "encoders_present": false,
+  "active_config_sha256": "d98b76092f435545bbd8f96e90482d3e7f23aee01261b78c9f754cf4628fc338",
+  "active_gains_changed": false,
+  "gazebo_balance": [
+    {
+      "scenario": "nominal_5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.005462720104646747
+    },
+    {
+      "scenario": "nominal_minus5deg",
+      "response_passed": true,
+      "tail_max_pitch_deg": 0.00542237000470963
+    }
+  ],
+  "gazebo_shuttle_passed": true,
+  "gazebo_leg_distances_m": [
+    0.49703363832877334,
+    0.49716799768844655
+  ],
+  "gazebo_turn_error_deg": [
+    0.3579669820932786
+  ],
+  "mujoco_shuttle_passed": true,
+  "mujoco_legs": 2,
+  "gpu_batch_passed": true,
+  "gpu_worlds": 16,
+  "gpu_controller": "shared C++ on CPU",
+  "gpu_physics": true,
+  "gpu_cpu_torque_error_nm": 1.3659286618450395E-09,
+  "bayesian_trials": 24,
+  "bayesian_controller": "shared C++ on CPU",
+  "bayesian_gpu_candidate_ready_for_gazebo": true,
+  "bayesian_candidate_promoted": false,
+  "isaac_integration_implemented": false,
+  "core_source_sha256": {
+    "behaviour.cpp": "1e21babfeac6bfbd815c1db5bc319fbeac54e3ec0160a9a99eba58b9d750de6b",
+    "controller.cpp": "2d9665aaeaaf2f8789f5a143c3fa1bf4be315281539a46e9def554f07cd17d05",
+    "estimator.cpp": "aa2d9a60a2972795565b189ff75b5597461e441e54ad2b4031a010b9e69e4d46",
+    "motor_command.cpp": "2c185bcb1e3c454a835bdb54f14377347247ff4da282337f5500b67b2acf0d59",
+    "my_routine.cpp": "4237c1b5664314994900cbf03726a45c9ca90411ac32c2e4ca5c6f27f672c4de",
+    "RobotCore.h": "26769358a4b63889c7e4130bcd8c82c335993edfdfb513186cee12e634093a5e",
+    "safety.cpp": "cc0b73a8989d4a03f1d0da1452967b65cb6a692df061efa23459a44df9080b02"
+  }
+}

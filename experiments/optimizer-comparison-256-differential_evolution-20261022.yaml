@@ -1,0 +1,58 @@
+# differential_evolution profile; validate in Gazebo before use.
+balance_controller:
+  ros__parameters:
+    use_sim_time: true
+    kp: 0.3626432845097475
+    kd: 0.020857769171907126
+    total_torque_limit_nm: 0.04
+    position_gain: 0.30785580655259687
+    velocity_gain: 0.4406545392458052
+    target_tilt_limit_deg: 5.0
+    wheel_radius_m: 0.04
+    fall_cutoff_deg: 35.0
+    sensor_timeout_s: 0.25
+    auto_start: true
+    motion_enabled: false
+    motion_command_timeout_s: 0.3
+    max_speed_m_s: 0.25
+    max_yaw_rate_rad_s: 0.8726646259971648
+    motion_acceleration_m_s2: 0.15
+    yaw_acceleration_rad_s2: 0.35
+    yaw_rate_gain: 0.01
+    yaw_rate_integral_gain: 0.02
+    yaw_torque_limit_nm: 0.012
+shuttle_demo:
+  ros__parameters:
+    use_sim_time: true
+    settle_time_s: 2.0
+    turn_settle_time_s: 1.0
+    turn_rate_rad_s: 0.8726646259971648
+    acceleration_m_s2: 0.15
+    phase_timeout_s: 40.0
+motor_driver:
+  ros__parameters:
+    use_sim_time: true
+    mode: motor_driver
+    update_period_s: 0.005
+    command_timeout_s: 0.25
+    nominal_voltage_v: 6.0
+    stall_current_a: 1.5
+    stall_torque_nm: 0.0784532
+    no_load_speed_rpm: 200.0
+    no_load_current_a: 0.15
+    battery_voltage_v: 6.0
+    battery_resistance_ohm: 0.0
+    driver_drop_at_rating_v: 2.6
+    driver_drop_intercept_v: 1.8
+    driver_current_rating_a: 0.6
+    driver_peak_current_a: 1.2
+    driver_min_supply_v: 5.0
+    driver_thermal_resistance_k_w: 36.4
+    ambient_temperature_c: 25.0
+    driver_max_junction_c: 150.0
+    pwm_levels: 255
+    pwm_frequency_hz: 490.0
+    pwm_off_mode: coast
+    command_deadband: 0.0
+    current_time_constant_s: 0.0
+    command_full_pwm_torque_nm: 0.04118793
